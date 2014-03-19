@@ -1,0 +1,643 @@
+.primary ,  .primaryfont ,h1,h3, #utility a ,#utility,a:link.link,a:visited.link ,legend{color:#5984C0}
+
+.colourtable td, .colourtable, hr, fieldset , .parent,#sidebar div {border-color:#5984C0;border-collapse:collapse}
+
+#banner, hr,#clickbanner {background:#5984C0;}
+
+.accent ,#horizontalnav li a  {background:#f6f1e3}
+
+a:link ,#horizontalnav li a { 	color: #2A476F;	}
+a:visited { 	color: #4676B9;	}
+
+
+
+
+
+
+
+body {
+background-color:#ffffff;
+}
+	
+	
+#container {background-color:#ffffff;border-left:1px solid #5984C0;height:100%;border-right:1px solid #5984C0;margin:0;}
+#floatwrap {float:left;width:100%;padding:0 0 4em;margin:0;}
+	
+	#banner {
+
+background-image:url('../images/blue_banner.png');
+
+	}
+	
+	#custombanner
+	{
+
+background-color:white;
+
+	}
+	
+	
+	
+h3 {
+	
+background-image:url('../images/blue_h3.png');
+	background-repeat: repeat-x;
+	background-position: bottom center;	
+	
+}
+
+
+
+	#utility {
+background:#f6f1e3
+	}
+	
+
+/* the styles defined below are common to all the intranet colour schemes */
+
+
+#horizontalnav li a#hcurrent
+{
+
+color:black;
+background:white;
+}
+
+
+
+.grey   {color:#999999}
+.palegreyback   {background:#f2f2f2}
+.greybackground   {background:#D9D9D9}
+
+.green   {background-color:#CCE6B3}
+.red{color:red;}
+.redbackground{background:red;}
+
+
+.horizontal_list li, .feed_list li
+{
+background:white;
+}
+
+.horizontal_list li a
+{
+
+background:#5984C0;
+color: #fff;
+font-weight:bold;
+border: 2px solid #5984C0;
+}
+
+.horizontal_list a:hover
+{
+border: 2px solid black;
+}
+
+.horizontal_list  a.current
+{
+border: 2px solid #5984C0;
+background-color: #f6f1e3;
+color:black;
+}
+
+
+.horizontal_list  li.white a
+{
+border: 2px solid #5984C0;
+background-color: #f6f1e3;
+color:black;
+}
+
+
+.feed_list li a
+{
+
+background-color: #f6f1e3;
+color:#5984C0;
+font-size:1em;
+border: 1px solid #5984C0;
+}
+
+.feed_list a:hover
+{
+border: 1px solid black;
+}
+
+.feed_list  a.current
+{
+border: 1px solid #5984C0;
+background-color: #f6f1e3;
+color:black;
+}
+
+
+.feed_list  li.white a
+{
+border: 1px solid #5984C0;
+background-color: #f6f1e3;
+color:black;
+}
+
+thead ,tfoot{font-weight:bold}
+
+#footer  {margin:1em;padding:1em; color:#5984C0;font-size:0.8em}
+#footer a {color:#5984C0;}
+
+
+
+
+
+#banner h1 {float:left;margin-top:1em;margin-left:1em;color:white}
+#banner img {float:left;}
+#emaillink {float:right;margin:1em;font-size:1.6em;text-decoration:none;color:white}
+
+
+
+#leftsidebar {width:20%;float:left;padding-top:0}
+#rightsidebar {width:20%;float:right;padding-top:0}
+
+
+
+#topnav, #sidenav {float:left;margin:0.2em;padding:0;list-style:none;width:90%}
+#topnav li a:hover, #sidenav li a:hover {background:#f6f1e3;}
+
+
+
+#topnav  li {float:left;margin-left:2px;position:relative;margin-top:0.2em;}
+#topnav  li a {padding:3px 5px;text-decoration:none;display:block;border:solid 1px #5984C0;}
+#topnav  li:hover ul {display:block;}
+#topnav  li ul {list-style:none;display:none;position:absolute;width:100%;z-index:100;margin:0}
+#topnav  li ul li {width:100%;margin:1px 0 0 0}
+
+
+
+#sidenav  li {position:relative}
+#sidenav  li a {padding:3px 5px;text-decoration:none;display:block;border:solid #5984C0;color:black;background:#f6f1e3;border-width:0 1px 1px 1px;}
+#sidenav  li a:hover {background:white;}
+
+#sidenav  li a.menutop {border-width:1px;}
+#sidenav  li:hover ul {display:block;}
+#sidenav  li ul {list-style:none;display:none;position:absolute;top:0;left:5em;width:100%;z-index:100;margin:0;background:white}
+
+#rightsidebar > div,#leftsidebar > div {margin:0 1em;padding:0}
+
+
+
+
+
+
+
+/* cutsom banner css begins here  */
+#custombanner img {float:left;}
+#custom_utility {float:right;padding:1em}
+#custom_utility li {display:inline;padding-right:0.5em;}
+#custom_utility li a {text-decoration:none;border:solid 1px #a7d051;padding:0.2em}
+#custom_utility li a:hover {background:#a7d051}
+
+#custombanner h1 {margin: 3em 0 0;padding-bottom:0}
+
+
+#customnav {margin:0;padding:0;list-style:none;}
+#customnav  li {float:left;margin-left:2em;position:relative}
+#customnav  li a {padding:3px 5px;text-decoration:none;display:block;color:#a7d051;background:white;font-weight:bold;font-size:1.2em}
+#customnav  li ul {display:block;}
+#customnav  li ul {list-style:none;position:absolute;width:100%;z-index:100;margin:0}
+#customnav  li ul li {width:100%;margin:1px 0 0 0}
+#customnav  li ul li a {color:black;font-size:0.85em;font-weight:normal;padding:0}
+/* custom banner css ends here  */
+
+
+
+* {margin: 0 0 0 0;}
+ul {padding:0}
+image, td image, a img {border:none}
+
+#resource ,#calendar
+{
+table-layout:fixed;
+width:100%;	
+}
+
+#resource td ,#calendar td
+{text-align: left; 
+height:100px;
+}
+
+
+
+/*
+h1 {margin: 0 0 0.5em 0;font-size: 26px}
+h2 {margin: 2em 0 0.5em 0;font-size: 18px}
+h3 {margin: 4em 0 0.5em 0;font-size: 16px; border-bottom: 1px solid;padding-bottom:0.5em;}
+
+h4 {margin: 0 0 0.5em 0;font-size: 12px;}
+*/
+h1 {margin: 0 0 0.5em 0;font-size:1.8em}
+h2 {margin: 1em 0 0.5em 0;font-size: 1.6em}
+h3 {margin: 4em 0 0.5em 0;font-size: 1.4em; padding-bottom:0.5em;
+
+
+}
+h4 {margin: 0 0 0.5em 0; font-size: 1.2em}
+p {margin-top:1em}
+td {vertical-align:top;}
+ul,ol {margin-left:1.5em}
+fieldset h2, fieldset table {margin-top:0;}
+form {margin:0;}
+form table td {text-align:left;padding:0.5em;vertical-align:top}
+
+.formlabels {text-align:right; font-weight:bold;}
+
+
+
+
+.row {float:left;clear:both;padding:0.3em;}
+
+
+
+#banner,#custombanner
+{
+
+float:left;
+width:100%;
+position:relative;
+
+}
+
+
+	
+#utility
+{
+clear:left;
+text-align:right;
+
+padding:4px;
+}
+
+#search
+{
+text-align:right;
+padding:4px;
+margin-bottom:10px;
+}
+
+#search ul, #helpdesk ul
+{
+list-style-type:none;
+display:inline;
+}
+
+
+#utility ul
+{
+list-style-type:none;
+display:inline;
+float :left;
+}
+
+
+
+#search li, #utility li, #helpdesk li
+{
+display:inline;
+
+}
+
+#search form
+{
+padding: 0em 0.6em;
+display:inline;
+}
+
+#search p, #helpdesk form p
+{
+
+display:inline;
+}
+
+ #utility a
+{
+
+padding: 0em 0.6em;
+}
+
+
+ #search a
+{	
+padding: 0em 0.6em;
+}
+
+
+.block
+{
+display:block;
+padding: 1em 0em;
+text-decoration:none;
+width:10em;
+}
+
+#searchtips li
+{
+padding:1em;	
+}
+
+ #helpdesk li a
+ {
+padding: 0em 0.4em;	
+}
+
+
+
+
+.menu { margin-left:45%;text-align:left;} 
+#mainbox { text-align:center;margin-bottom:3em; }
+
+
+
+
+
+.colourtable  {border-style:solid; border-width: 1px;empty-cells:show;border-collapse:collapse;}
+.colourtable td {border-style:solid; border-width: 1px;padding:0.5em;}
+
+
+
+
+a:link.link {text-decoration:none;  }
+a:visited.link {text-decoration:none; }
+
+
+
+hr {height:3px;}
+
+ul {text-align: left; }
+
+legend {font-size:150%;}
+fieldset {padding:2em; border: 1px solid }
+
+
+
+#container {
+margin:0 auto;
+max-width:1248px;
+min-width:800px;
+
+
+}
+ 
+#floatwrap {background:white;float:left;margin:0;}
+
+
+
+#content { 
+
+	float:left;
+	width:58%;
+	padding:  0;
+	margin:0;
+	
+		}
+  
+#content > div {padding:0 2em;}
+
+
+
+
+.label {
+text-align:right;
+vertical-align: top;
+font-weight:bold;
+
+}
+
+.input {
+text-align:left;
+vertical-align: top;
+
+}
+
+body {
+     font-family:  sans-serif;
+	 margin-left:0px;
+	 margin-right:0px;
+	 margin-top:0px;
+	 margin-bottom:0px;
+	 font-size: 0.85em;
+	
+	
+	 
+	 }
+#verticalnav
+{
+margin-left:0;
+
+} 
+	 
+
+
+#verticalnav li
+{
+list-style: none;
+line-height:1.2em;
+
+} 
+
+#horizontalnav
+{
+padding: 3px 0;
+margin-left: 0;
+
+font-weight: bold ;
+clear:both;
+}
+
+#horizontalnav li
+{
+list-style: none;
+margin: 0.5em 0.5em 0 0;
+float:left;
+border: solid 1px #778;
+overflow:hidden;
+white-space: nowrap ;
+}
+
+#horizontalnav li a
+{
+padding:0.2em 0.5em;
+margin:0;
+white-space: nowrap ;
+text-decoration: none;
+display:block;
+}
+
+
+
+
+
+
+
+
+
+.leftspan {margin-left:3em;}
+
+.box {border:solid 1px;margin:0.5em;width:150px;padding:1em}	
+
+.feed {margin:0 0 2em;padding:0; width:100%;}
+
+.horizontal_list, .feed_list
+{
+margin:1em 0;
+padding-left: 0;
+white-space: nowrap;
+float:left;
+clear:both;
+width:100%;
+}
+
+.horizontal_list li, .feed_list li
+{
+float:left;
+list-style-type: none;
+margin-right:1em;
+line-height:2.5em;
+}
+
+.horizontal_list li a{
+padding: 3px 10px; 
+text-decoration:none;
+}
+
+.horizontal_list li a, .feed_list li a
+{
+padding: 3px 10px; 
+text-decoration:none;
+}
+
+div.widget {margin:0;padding:0;}
+
+.widget td {
+padding:0.2em;
+text-align:center}
+
+.widget td a {text-decoration:none;}
+
+.cursor {cursor:pointer;}
+
+table.widget td span {cursor:pointer;}
+
+/* shrinkwrap and centered block*/
+.swouter {
+clear:both;
+float:left;
+position:relative;
+left:50%;
+text-align:left;
+margin-bottom:2em;
+}
+
+.swinner {
+position:relative;
+left:-50%;
+list-style:none;
+}
+
+
+#helptable td {padding:0.5em}
+#helptable td a {margin-top:0.3em;display:block}
+
+#timer {font-size:1.2em; margin-left:1em}
+
+.listing {list-style:none;line-height:1.4em;margin-left:0%;padding-left:0;}
+
+
+.listingcenter {list-style:none;line-height:1.4em;margin-left:45%;}
+
+
+.left_col {float:left;width:40%;text-align:right;}
+.right_col {float:left;width:60%;text-align:left;}
+
+.left_col p, .right_col p {padding:1em;margin:0;}
+.left_col label,  .right_col span  {margin:1em;display:block;} 
+.right_col img {padding-left:1em}
+
+.display {background:white;position:absolute;border:1px solid black;padding:1em;display:block;left:6em;top:-1.5em;width:40em;}
+.nodisplay {display:none;}
+
+.hoverdes, .hoverdet {background-image:url('../images/comment.png');
+background-repeat: no-repeat;
+background-position: 50% 50%; 
+}
+
+
+#mainbox label {font-weight:normal;color:red}
+
+.center {margin:0 auto;text-align:left;}
+
+/*
+#calendar td img {background:}
+*/
+.add {height:24px;background-repeat:no-repeat;background-image:url('../images/add16.png');margin:0 0 20px 0;} 
+.add a {text-decoration:none;width:3em;height:2em;padding:0 20px 0 20px; display:block;}
+
+.addevent {text-decoration:none;width:3em;height:2em;padding:0 20px 0 20px; display:block;background-repeat:no-repeat;background-image:url('../images/add16.png');}
+
+.formdiv {padding:0 1em 1em 0;}
+
+
+#listmargin {width:30%;;float:left;text-align:left}
+#listmargin div {padding-left:3em}
+#listmargin input, #listmargin span {display:block}
+
+.eventlist {float:left;width:70%;text-align:left;}
+.eventlist div {padding-right:4em}
+.eventlist h4, .listmargin h4 {margin-top:2em}
+
+.bold {font-weight:bold;margin:0;padding:0;color:black;display:block}
+.eventlist  a {display:block}
+
+#sitemap_modules {list-style:none}
+#sitemap_modules li {padding:0.8em;font-weight:bold}
+
+#sitemap_modules li a {text-decoration:none}
+#sitemap_modules ul li {padding:0.25em;font-weight:normal}
+
+
+#folder div {margin:1em 0 }
+#folder div span{background:#f6f1e3;font-size:1.2em;padding:0.25em}
+#folder div div {background:#ffffff;display:none;margin-bottom:3em;color:black}
+
+span.leave1, span.leave2 {padding:0.5em 0; }
+span.leave1, span.leave1 a {color:#2B547E;}
+.leave1, .leave1 a {color:#2B547E;}
+.leave2, .leave2  a {color:#5C4033;} 
+
+
+.nooption {background:#FF4F3F}
+.yesoption {background:#CCFF66}
+.partoption {background:#FFCC00}
+.canceloption {background:#BFD2FF}
+
+.datepicker {background:#FFFEEF}
+
+a.paid, span.paid {color:#006F39;}
+a.partpaid, span.partpaid {color:#719F00;}
+a.unpaid, span.unpaid {color:#CF5C00;}
+
+
+.textballoon {display:none;position:absolute;z-index:500;zoom: 1;top:20px;border:solid 1px black;padding:1em;background:#FFFFF4}
+
+.contentleft {margin:2em 0 0 0;}
+.contentcenter {margin:2em 0 0 0;text-align:center}
+.contentright {margin:2em 0 0 0;text-align:right}
+.contentleftfloat {margin:2em 0 0 0;float:right}
+.contentrightfloat {margin:2em 0 0 0;float:left}
+
+.colstart {width:44%;float:left;padding:1em;margin:2em 10px 1em 0;border:solid 1px;}
+.boxstart {width:100%;padding:1em;margin:2em 10px 1em 0;border:solid 1px;clear:both}
+.colstart h3, .boxstart h3 {margin-top:1em;}
+.more {background:red;}
+
+.shift {position:relative}
+.shift > div {display:none;position:absolute;width:200px;border:solid black 1px;margin:1em;background:white;padding:0.5em;z-index:1000}
+
+ul.rostermenu {list-style:none;padding:0;margin:2em 0 0 0}
+ul.rostermenu li {margin:0.2em;padding:0.2em}

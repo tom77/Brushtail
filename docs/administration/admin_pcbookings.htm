@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Administrator's Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+	<style>
+li {padding:0.2em}
+h2 {margin::1em 0 0 0}
+</style>
+</head>
+
+<body>
+<a href="admin_toc.htm">Table of contents</a>
+<h1>PC self bookings client manual: php-gtk2 version</h1>
+	
+	<h2>Introduction</h2>
+	<p>
+	The booking client is a program that allows patrons to self checkin/book computers. 
+	The booking system can be used the following modes:
+	<ul>
+	 <li><b>Barcode mode</b><br> Patrons are authenticated via their library barcode. Brushtail will check credentials against the web catalogue.
+	 Patrons sit down at an available computer and self book. Alternatively they may be prebooked via the intranet or via the Web</li>
+	 <li>
+	 <b>PIN mode</b> <br>Bookings are authenticated via single use PINs. No external authentication. Bookings are made by library staff
+	</li></ul>
+	</p>
+	
+	<p>The original version was written in Visual Basic. This has been superceeded by a version written in PHP-GTK2</p>
+	<h2>Installation Requirements</h2>
+	<ul>
+	<li>Client PCs running Windows XP/Windows 7</li>
+	<li>Brushtail intranet server</li>
+	<li>Client PC has security software that denies access to Ctrl + Alt + Delete</li>
+	
+	
+	</ul>
+	<h2>Installation instructions</h2>
+	<h3>Configure Brushtail</h3>
+	<ol>
+	<li>If authenticating via patron barcodes, edit config.php and set $PCAUTHENTICATION to "web". This step not necessary if using "PIN" mode</li>
+	<li>Create a PC booking type through Content Management > PC Bookings > Booking type. (Note the "Client software parameters")</li>
+	<li>Create a PC bookings location through Content Management > PC Bookings > Locations</li>
+	<li>Create a PC bookings computers for the location through Content Management > PC Bookings > Location > Add computer.<br>
+	If using IP authentication, setting the "poll client" will make client computers respond immediately to booking changes made via intranet.
+	</li>
+
+	<li>The PC may be authenticated by static IP address or shared password. 
+	The Computer details in the intranet content management must have either an ip address or a password.
+	If no password is set, ip authentication will be attempted. An ip address is necessary for polling. If using a password, this must match the password inthe ini.xml on the client computer.
+	</li>
+	</ol>
+	<br><br>
+				<strong>Booking type Client software parameter - Booking modes</strong> <br>
+	<ul>
+<li><b>Barcode mode</b><br>
+Available computer - Patron can self book using barcode.<br>
+Booked computer (booking contains barcode) -  Patron can self checkin using barcode.<br>
+Booked computer (booking HAS NO barcode) -  Staff must checkin patron via intranet.<br>
+
+
+
+</li>		
+<li><b>Mixed mode</b><br>
+Available computer - Patron can self book using barcode.<br>
+Booked computer (booking contains barcode) -  Patron can self checkin using barcode.<br>
+Booked computer (booking HAS NO barcode) -  Booking generates session PIN. Patron must be given PIN to use computer.<br>	
+	
+	
+</li>			
+<li>
+<b>PIN mode</b><br>
+Available computer - No self bookings, patron must book via staff.<br>
+Booked computer - Intranet booking generates session PIN. Patron must be given PIN to use computer.<br>		
+	
+	
+	
+</li>			
+		
+	</ul>
+	
+	
+
+	
+	
+	<h3>Configure Client PC</h3>
+	<ol>
+	<li>Logged in as administrator Copy client folder onto computer<br>
+	Create a folder C:\program Files\pcbooker and copy files. 
+	Check that the files in this folder can be read but not writable by the windows user account used by patrons.
+	</li>
+	<li>Associate the .php file extension with 
+	<b>C:\program Files\pcbooker\php-gtk2\php-win.exe</b>. You can do this by right clicking on 
+	C:\program Files\pcbooker\php-gtk2\pcbooker.php and choose "open" or "open with" and browse to php-win.exe. 
+	Make the checkbox "Always use this program" is selected. Usually this only needs to be done logged in as administrator. 
+	Sometimes it may be necessary to log into the user account used by the public and associate the file type.
+	</li>
+
+	
+	
+	
+	<li>Create a shortcut to C:\program Files\pcbooker\php-gtk2\pcbooker.php, put this in the start menu > startup folder for the windows user account used by patrons. 
+	Check that user has read and execute permissions on the shortcut.
+	
+	
+	<li><b>Connection parameters</b> <br>
+	This may be done when logged into windows as administrator
+	<ul>
+	<li>By editing C:\program Files\pcbooker\php-gtk2\ini.xml</li>
+	<li>Or via application interface. Start application and press key F3. Default password is banana</li>
+	</ul>
+	
+Parameters
+	<ul>
+	<li><b>server</b><br>
+	IP address of brushtail server.
+	<li><b>serverpath</b><br>
+	Path to session.php on server. (eg /brushtail/main/session.php)</li>
+	<li><b>serverport</b><br>
+	port number of intranet server.</li>
+	<li><b>proxy</b><br>
+	Optional leave blank if none.</li>
+	<li><b>proxyport</b><br>
+	Optional leave blank if none.</li>
+	<li><b>admin</b>
+	Application administrator password. Must be changed via application interface using F2 key (not via xml file).
+	</li>
+	<li><b>pcno</b><br>
+	Used for pc "password authentication".
+	</li>
+	<li><b>intranet/secret</b><br>
+	Used for pc "password authentication". Must be changed via application interface using F3 key (not via xml file) 
+	</li>
+	<li><b>exitbutton</b><br>
+	values can be SHUTDOWN, LOGOFF 0r NONE. This will determine what kind of exit button (if any) from the pc booker screen.
+	</li>
+	</ul>
+
+
+	
+	
+	
+	
+	
+	</li>
+	
+	
+
+	
+	<li><b>Administrator Password</b><br>
+	You can disable the client interface pressing F1 key<br>
+	Default password is banana<br>
+	To change client administrator password pressing F2 key(must be done logged in as administrator
+	
+	
+	</li>
+	<li><b>Shutdown privileges</b>
+	The booking client needs privileges to shutdown or reboot the computer.
+	<ul><li>
+	Logged in administrator, open Local Security Settings from
+Administrative Tools.
+</li><li>
+Select Security Settings \ Local Policies \ User Rights Assignment
+</li><li>
+Open the user right named "Force shutdown from a remote system" and
+add the INTERACTIVE group to this user right. </li>	
+	</ul>	
+	</li>
+		<li><b>(Optional - improve performace on ip authenticated clients)</b><br>
+	Typically the computer will check Brushtail every 30 seconds to check booking status.
+You can make changes (eg cancellation) immediate by polling:
+<ol>
+<li>Edit the computer in Brushtail content management to "poll client"</li>
+<li>Checking that the content management has the ip address set.</li>
+<li>C:\program Files\pcbooker\php-gtk2\data\check.txt needs to be writable by public user account</li>
+<li>
+	
+<ul>
+	<li><b>Windows XP</b><br>
+	Install a Apache webserver on client using C:\program Files\pcbooker\Apache2.2\bin\install.bat<br>
+You will get a pop asking if you want the firewall to allow this program. Choose Allow.</li>
+	<li><b>Windows 7</b><br>
+	Install a Apache webserver. Right click on c:\windows\system32\cmd.exe and run as administrator. Change command prompt directory to c:\program files\pcbookder\apache2.2\bin<br>
+	execute command <i>httpd.exe -k install -n "pcbookerwebserver"</i></li>
+</ul>	
+</ol>
+</li>
+
+<li><b>(Optional stop users from logging out windows)</b><br>
+This involves removing logoff from start menu and putting a password protected shortcut on the public user account desktop.
+<br>
+Open gpedit.msc > User configuration > User templates > Start menu
+<ul>
+<li>Windows xp - "Enable remove logoff from start menu", disable "Remove a prevent access to shutdown command"</li>
+<li>Windows 7 - "Enable remove logoff from start menu"</li>	
+Put shortcut to c:\windows\system32\logoff.exe on administrator desktop.<br>
+Put shortcut to C:\program Files\pcbooker\php-gtk2\logoff.php on the public user account desktop.<br>
+Right click on shortcuts and give them logoff icons.<br>
+The logoff.php script will prompt for the booking application password, if password is correct the script will logoff windows.
+</ul>
+
+
+</li>
+
+	
+	
+	</li>
+	
+	
+	
+	
+	
+	
+	</ol>
+	
+	
+	
+		<h3>Troubleshooting configuration</h3>
+		From the client computer try to connect to the booking system via a web browser. This is useful in testing for connection/pc authentication issues. 
+		If there is a problem there will be an error displayed. A successful connection will display an xml file.
+		<ol>
+		<li> If using ip authentication try<br>
+		 http://serveraddress/intranet/main/session.php?event=check</li>
+		<li> If using password authentication try <br>
+		http://serveraddress/intranet/main/session.php?event=check&pcno=pcno&secret=secret<br>
+		Use the values for pcno and secret from the client config.
+		
+		
+		</li>
+		</ol>
+	
+	
+	
+	
+	
+	
+	
+<h3>Installing multiple instances of Pcbooker on a Windows terminal server</h3>
+	<ol>
+	<li>Must use password authentication.</li>
+	<li>	Copy pc booker to program files directory (C:\program files\pcbooker)</li>
+<li>	Associate .php with php-win.exe for all users</li>
+Execute following commands as administrator<br>
+assoc .php=php_auto_file<br>
+ftype php_auto_file=c:\program files\pcbooker\php-gtk2\php-win.exe %1<br>
+<li>	Rename ini.xml and create a username.ini.xml file for each user account connecting via terminal services using PC booker</li>
+<li>	Configure options for each usernameini.xml file</li>
+Need to set password and pcno (this needs to match info in brushtail pc bookings content management).
+Execute each instance of pcbooker. F3 key to set password and pcno via to options page.<br>
+Set exitbutton to "LOGOFF".
+
+
+<li>	Put a shortcut to c:\program files\pcbooker\php-gtk2\pcbooker.php in the users startup folder.</li>
+
+	
+	<li>Polling. (optional) 
+	Check that the terminal server has port 12000 open.
+	
+	</li>
+
+	
+	
+  <br>
+  <a href="admin_toc.htm">Table of contents</a> </p>
+</body>
+</html>

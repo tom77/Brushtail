@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Untitled Document</title>
+	</head>
+	<body>
+			<div id="dummy">downloadding rss</div>
+		
+	<script type="text/javascript">	
+		var url = "http://192.168.10.233/brushtail_intranet/main/rss.php?link=http://www.maxdesign.com.au/feed/&mode=full&t=123412341234";
+		
+		updatePage(url,"dummy");
+		
+	function updatePage(url,id){
+	
+	
+	
+		var req = null;
+		var id;
+		var element = document.getElementById(id)
+		
+		
+		
+		if (window.XMLHttpRequest) {
+			req = new XMLHttpRequest();
+			
+		}
+		else 
+			if (window.ActiveXObject) {
+				try {
+					req = new ActiveXObject("Msxml2.XMLHTTP");
+				} 
+				catch (e) {
+					try {
+						req = new ActiveXObject("Microsoft.XMLHTTP");
+					} 
+					catch (e) {
+					}
+				}
+			}
+		
+		
+		
+		req.onreadystatechange = function(){
+		
+		
+			if (req.readyState == 4) {
+				element.innerHTML = req.responseText;
+			}
+			
+		}
+		
+		
+		var timestamp = new Date();
+		var fullurl = encodeURI(url) + "&t=" + timestamp.getTime()
+		alert(fullurl)
+		req.open("GET", fullurl, true);
+		req.send(null);
+		
+	
+			
+	}
+	</script>
+	
+
+	</body>
+</html>

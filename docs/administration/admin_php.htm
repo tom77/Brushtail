@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Administrator's Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a href="admin_toc.htm">Table of contents</a>
+<h1>Brushtail Administrator's Guide</h1>
+<h2>PHP</h2>
+<h3>Introduction</h3>
+<br>
+
+<p><strong>PHP5
+  </strong> <br>This is the current version of PHP.<br></p>
+  
+
+
+  <strong>PHP Extensions
+  </strong><br>
+<p>
+	The following PHP extensions need to be enabled (windows) or compiled (linux)
+<ul>
+<li>MySQL (required)</li>	
+<li>ldap (optional - for authentication)</li>
+<li>imap (optional - for authentication)</li>
+<li>GD (optional - for image resizing)</li>
+	
+	
+</ul>
+
+<b>date.timezone</b><br>
+date.timezone needs to be configured in php.ini<br>
+example<br>
+date.timezone = 'Australia/Melbourne';<br><br>
+This could also be set by putting the following line in config.php (with appropriate timezone)<br>
+date_default_timezone_set('Australia/Melbourne');
+
+<br /><br />
+
+
+
+<b>Windows</b> <br />
+edit php.ini and uncomment the following lines <br />
+extension=php_gd2.dll<br />
+extension=php_imap.dll<br />
+extension=php_ldap.dll<br />
+extension=php_mysql.dll<br />
+extension=php_sockets.dll<br />
+<br />
+If using sqlite database you will need the following <br />
+extension=php_sqlite.dll<br />or
+extension=php_sqlite3.dll<br /><br />
+Note that as of PHP 5.4 sqlite3 not sqlite is part of core PHP.
+<br />
+<br />
+<b>Linux</b><br />
+The configure command could look something like this<br />
+./configure --with-apxs2=/var/www/bin/apxs --with-mysql --with-ldap --with-gd --with-jpeg-dir=/usr/lib
+</p>
+<p>Below are some (very brief) instructions for installing PHP on windows<br>
+  <br>
+</p>
+
+
+
+
+<h3>PHP5 and Microsft IIS webserver on Windows</h3>
+<ol>
+  <li>Install Microsft IIS</li>
+  <li>Download PHP5 installer for windows.<br>
+    Download PHP5 ZIP package (contains libraries) for windows. </li>
+  <li>Run PHP5 installer. By default this will install to C:\php</li>
+  <li>Copy the ext folder from the PHP5 zip package to C:\php so you end up with 
+    C:\php\ext</li>
+  <li>Copy files libmysql.dll, libeay32.dll, ssleay32.dll from the PHP5 zip package 
+    to C:\php.</li>
+  <li>Edit C:\windows \php.ini<br>
+    <br>
+    <strong>set parameter</strong><br>
+    <br>
+    extension_dir = &quot;C:\php\ext&quot;<br>
+    <br>
+    <strong>uncomment the lines</strong><br>
+    <br>
+    extension=php_mysql.dll<br>
+    extension=php_ldap.dll <br>
+	 extension=php_imap.dll <br>
+  </li>
+  <li>Under Control Panels &gt; Administrative Tools &gt; Services &gt; World 
+    Wide publishing <br>
+    restart the web server.</li>
+</ol>
+
+ 
+
+
+
+
+
+
+<h3>PHP5 and Apache2.2 web server on Windows</h3>
+<p>A very rough guide!</p>
+<ol>
+<li>Download and install Apache 2.2</li>	
+<li>Download php5 (zip file not installer)
+</li>	
+<li>Unzip php5 contents to c:\php5</li>	
+<li>
+Add c:\php5 to windows path
+<ul>
+<li>Go to Control Panel and open the System icon (Start -> Settings -> Control Panel -> System, or just Start -> Control Panel -> System for Windows XP/2003) </li>	
+<li>Go to the Advanced tab </li>	
+<li>Click on the 'Environment Variables' button </li>	
+<li>Look into the 'System Variables' pane</li>	
+<li>Find the Path entry (you may need to scroll to find it)</li>	
+<li>Double click on the Path entry </li>	
+<li>Enter your PHP directory at the end, including ';' before (e.g. ;C:\php5) </li>	
+<li>Press OK and restart your computer </li>
+</ul>
+
+</li>
+
+<li>
+Create a new file in your Apache installation in /conf/extra/ called "httpd-php.conf" containing  following lines
+<br />
+<br />
+LoadModule php5_module "C:/php5/php5apache2_2.dll"
+<br /><br />
+&lt;IfModule php5_module&gt;<br />
+	AddType application/x-httpd-php .php .php3 .php5<br />
+	AddType application/x-httpd-php-source .phps<br />
+	PHPIniDir "C:/php5"<br />
+&lt;/IfModule&gt;<br />
+	
+	<br />
+	
+	
+</li>
+<li>
+Edit httpd.conf and add this line (includes previously created file):<br />
+Include conf/extra/httpd-php.conf
+</li>
+<li>
+Rename C:\php5\php.ini.recommended to C:\php5\php.ini
+</li>	
+<li>Edit php.ini and uncomment the following lines<br /><br />
+   extension=php_mysql.dll<br />
+    extension=php_ldap.dll <br />
+	 extension=php_imap.dll <br />
+  </li>
+  <li>Under Control Panels &gt; Administrative Tools &gt; Services &gt; <br />
+ Restart apache service</li>
+
+
+
+</ol>
+
+
+
+
+
+
+<h3>Testing PHP</h3>
+<p><br>
+  <br>
+  The default document directory with Apache2 is C:\Program Files\Apache Group\Apache2\htdocs.</p>
+<p>The default document directory with Microsoft IISis C:\Inetpub\wwwroot. <br>
+  <br>
+  To test your PHP installation create a test file in the default document directory 
+  called test.php. In this file have the following code.<br>
+  <br>
+</p>
+<p>&lt;?</p>
+<p>phpinfo();</p>
+<p>?&gt; </p>
+
+Viewed through a web browser, http://localhost/test.php, you should see a page like this that lists the parameters of the PHP installation. 
+
+<br>
+<br>
+<br><br><br>
+
+
+
+ 
+ 
+
+
+ 
+ 
+ 
+ <h3>php.ini</h3><br><br>
+ To change PHP parameters you need to edit the <strong>php.ini</strong> file and restart the web server. Relevant parameters include.
+ <br>
+ <br>
+<strong> Security</strong><br>
+register_globals = Off<br><br>
+ <br><br>
+<strong>File uploads</strong><br>
+<br>
+<strong>memory_limit = 10M </strong>     <br>
+<strong>post_max_size = 8 M</strong><br>
+<strong>upload_max_filesize = 8M</strong><br>
+<strong>file_uploads = On</strong><br>
+<br><br>
+(duration of sessions in seconds)<br>
+<strong>session.gc_maxlifetime = 28800</strong><br><br>
+
+
+; For Win32 only.<br>
+<strong>sendmail_from = root@blah.org</strong>
+<br><br>
+
+
+ <h3>PHP4</h3>
+<p>PHP4 is no longer under development. Please use PHP5. The following is included for reference purposes.<br>
+  <br>
+  As of MySQL version 4.1, MySQL changed the way it stored passwords so PHP4 will 
+  not connect to a default installation.</p>
+<p><br>
+  You will need to create a MySQL user account and store the password in the old 
+  format. </p>
+<p><br>
+  mysql> SET PASSWORD FOR 'some_user'@'some_host' = OLD_PASSWORD('newpwd'); <br>
+</p>
+<p>See the MySQL website for more details. <a href="http://dev.mysql.com/doc/mysql/en/Old_client.html">http://dev.mysql.com/doc/mysql/en/Old_client.html</a><br>
+  <br>
+</p>
+
+
+<br>
+ <br><br><br>
+
+<a href="admin_toc.htm">Table of contents</a>
+</body>
+</html>

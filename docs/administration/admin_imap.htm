@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Administrator's Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a href="admin_toc.htm">Table of contents</a>
+<h1>Brushtail Administrator's Guide</h1>
+
+
+<h2>IMAP - authentication via email</h2>
+
+<h3>Introduction</h3>
+<p><br>
+  Be default, intranet users are authenticated using the password stored by the 
+  MySQL database. Intranet user accounts can also authenticated via POP/IMAP. This does require that PHP has the ldap 
+  extension compiled or enabled. Requires php IMAP support.</p>
+<h3>Configuring user accounts for Email authentication</h3>
+<p>The administrative user has access to a link called <strong>Intranet Administration</strong>. 
+  Click on this.</p>
+<p><img src="images/Untitled-1.gif" ></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Click on <strong>User accounts</strong>.</p>
+<p><img src="images/Untitled-44.gif"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Click on the user edit icon <img src="images/user_edit.png"> beside the user account you want to 
+  modify.</p>
+<p><img src="images/Untitled-3.gif"></p>
+<p>&nbsp;</p>
+<p>Change authentication method to Email.</p>
+<p>Below this enter the email login username.<br>
+</p>
+<p>Examples:</p>
+<p>fred.frog</p>
+
+<p><br>
+  <img src="images/Untitled-48.gif" ></p>
+<p>&nbsp;</p>
+<p><b>IMAP settings</b><br>
+Edit the Intranet config file <strong>includes/config.php</strong><br>
+Set a value for the $MAILSERVER parameter. This requires information about the server ip and protocol port number.
+ Used for authenticating users via imap/pop3. Check php website for information on syntax. http://www.php.net/manual/en/function.imap-open.php
+<br><br>Examples:<br>
+$MAILSERVER = "{hostname:143/imap}"; <br>
+$MAILSERVER = "{hostname:110/pop3}"; 
+</p>
+  <br>
+  <a href="admin_toc.htm">Table of contents</a> </p>
+</body>
+</html>

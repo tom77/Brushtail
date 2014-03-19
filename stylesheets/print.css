@@ -1,0 +1,7 @@
+body {font-size:1em; }
+#container {border-style:none}
+.nav, #backtocontents, #banner, #utility, #search,#sidebar ,#leftsidebar,#rightsidebar {display :none;}
+#content {margin-left:0}
+.hide {display :none;}
+
+

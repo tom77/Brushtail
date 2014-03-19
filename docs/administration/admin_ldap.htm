@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Administrator's Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a href="admin_toc.htm">Table of contents</a>
+<h1>Brushtail Administrator's Guide</h1>
+
+
+<h2>LDAP</h2>
+
+<h3>Introduction</h3>
+<p><br>
+  Be default, intranet users are authenticated using the password stored by the 
+  MySQL database. Intranet user accounts can also authenticated via LDAP. This 
+  means that users can be autheticated via Windows Active Directory (2000 and 
+  2003 server) , Open LDAP, Kero Mail server and so on. This is set on a per user 
+  basis by the Intranet administrator. This does require that PHP has the ldap 
+  extension compiled or enabled.</p>
+<h3>Configuring user accounts for LDAP authentication</h3>
+<p>The administrative user has access to a link called <strong>Intranet Administration</strong>. 
+  Click on this.</p>
+<p><img src="images/Untitled-1.gif"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Click on <strong>User accounts</strong>.</p>
+<p><img src="images/Untitled-44.gif"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Click on the <strong>Edit</strong> link beside the user account you want to 
+  modify.</p>
+<p><img src="images/Untitled-3.gif"></p>
+<p>&nbsp;</p>
+<p>Change authentication method to active directory or Openldap.</p>
+<p>Below this enter the ldap DN (distinguished name). In the case of the Active 
+  directory it can also be the windows domain user name.<br>
+</p>
+<p>Examples:</p>
+<p>fred.frog@foo.org</p>
+<p>CN=fred frog,CN=Users,DC=foo,DC=org <br>
+  (this format must be used if you want users to be able to update their windows 
+  password)<br>
+  To find the exact syntax you can use the LDIFDE Active Directory tool to see 
+  the Windows LDAP schema.</p>
+<p><br>
+  <img src="images/Untitled-48.gif" ></p>
+<p>&nbsp;</p>
+<h3>Configuring the intranet for LDAP authentication</h3>
+<p>Edit the Intranet config file <strong>includes/config.php</strong></p>
+<p>&nbsp;</p>
+<p>//LDAP SETTINGS<br>
+  //ldap server<br>
+  $LDAPHOST = &quot;ldapserverip&quot;;<br>
+  //ldap domain</p>
+<p>//windows domain name<br>
+  $LDAPDOMAIN = &quot;foo.org&quot;;<br>
+  //allow updates to passwords on ldap (windows) server<br>
+  $LDAPUPDATE = &quot;yes&quot;;<br>
+  //ldap administrative account user name - only needed if wanting to change active 
+  directory password<br>
+  $LDAPADMINDN = &quot;cn=Administrator,cn=Users,dc=foo,dc=org&quot;;<br>
+  //ldap administrative account password - only needed if wanting to change active 
+  directory password<br>
+  $LDAPADMINPASS = &quot;administratorpassword&quot;;</p>
+<p>For read only authentication the only paremeter &quot;LDAPHOST&quot; is necessary.</p>
+<p>If you want to be able to force users to update their windows password via 
+  the intranet, then the further parameters are necessary.</p>
+<p>$LDAPUPDATE = &quot;yes&quot;;<br>
+  $LDAPADMINDN must be set the ldap distinguashed name of an administrator account.<br>
+  $LDAPADMINPASS must be set to password of above account.</p>
+<p>&nbsp;</p>
+<h3>Updating windows passwords part one - client ssl</h3>
+<p>The default port number for ldap is 389. To be able to update windows active 
+  directory, the intranet server must connect to the windows domain controller 
+  on a secure ldap/ssl tcp port 636.</p>
+<p>One way of doing this is to install stunnel (http://www.stunnel.org/) on the 
+  intranet server. This will listen for ldap connections (port 389) and redirect 
+  them as a ldaps secure (port 636) connections to the ldap server (windows domain 
+  controller)</p>
+<p>.<br>
+  To do this</p>
+<p>1) Install openssl and stunnel<br>
+  2) the ldap server name in intranet prefrences would look like this ldap://127.0.0.1/ 
+  (ldap connections sent to localhost).<br>
+  3) edit stunnel.conf it to look like the following. Replace &quot;ldapserver&quot; 
+  with the ip address of the ldap server.</p>
+<p><br>
+  client = yes<br>
+  verify = 0<br>
+  ; Service-level configuration</p>
+<p>[ldap]<br>
+  accept = 127.0.0.1:389<br> 
+  connect = ldapserver:636<br> <br><br> <br>
+  
+  
+  Make sure that hostname or ip used in accept parameter is the same as that used for $LDAPHOST  in config.php.<br>
+  Make sure that the you use the hostname not an ip address in the connect parameter.
+ 
+</p>
+<h3>Updating windows passwords part two - server ssl</h3>
+<p>Before Active directory will acept secure ldap connections, a certificate needs 
+  to installed.</p>
+<p><strong>Install certificate services</strong> (The installation CD is needed)</p>
+<p>1. Open Control Panel and select Add/Remove Programs.<br>
+  2. Choose Add/Remove Windows Components.<br>
+  3. Select Certificate Services, then click Next.<br>
+  4. Select Enterprise root CA, then click Next. <br>
+  5. Fill in CA identifying information and click Next.<br>
+ .</p>
+<p>&nbsp;</p>
+<p><strong>Create certificate</strong></p>
+<p> 1. Install an Enterprise Certificate Authority on a Windows 2000 Domain Controller, 
+  which installs a certificate on a server or install a third-party certificate 
+  on the Domain Controller.<br>
+  2. Click Start&gt;All Programs&gt;Administrative Tools&gt;Active Directory Users 
+  and Computer.<br>
+  3. In the Active Directory Users and Computers window, right-click on your domain 
+  name and select Properties.<br>
+  4. In the Domain Properties dialog box, select the Group Policy tab.<br>
+  5. Select the Default Domain Policy group policy and then click Edit.<br>
+  6. Select Windows Settings under Computer Configuration.<br>
+  7. Select Security Settings and then select Public Key Policies.<br>
+  8. Select Automatic Certificate Request Settings.<br>
+  9. Use the wizard to add a policy for Domain Controllers.</p>
+  
+  <br><b></b>Check SSL</b><br>
+<p>Verify that SSL has been enabled on the server. You can do this by using the ldp.exe tool. This can be obtained by installing suptools.msi from Windows installation cd's \Support\tools directory onto a client PC. 
+
+<br><br>
+ Run the command Start > Run > "ldp" <br>
+ Connect and supply valid hostname of the domain controller and port number 636. 
+ Also select the SSL check box. If you can connect, that means that the domain controller has been setup to accept secure ldap connections.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><br>
+  <br>
+  <a href="admin_toc.htm">Table of contents</a> </p>
+</body>
+</html>

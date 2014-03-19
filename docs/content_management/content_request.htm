@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Content Management Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a href="content_toc.htm">Table of contents</a> 
+<h1>Brushtail Content Management Guide</h1>
+<h2>Request tracking</h2>
+
+<h3>Introduction</h3>
+<p>Request tracking modules display to the staff a form for logging requests. 
+  Unlike an email form, these requests are stored in the database.</p>
+<p>Editing a request tracking module through content management allows you to 
+  edit the form interface that staff submit requests through. </p>
+<p>This form interface is visible to users with read permissions when the module 
+  is accessed through the main navigation menu. When users with power user or 
+  edit permissions access this module through the main navigation menu they do 
+  not see this form, what they see instead is an archive of requests that can 
+  be searched, edited, printed or deleted.</p>
+<p>To edit the request form, click on the request form module in the content management 
+  menu.</p>
+<p><img src="images/Untitled-76.gif"></p>
+<p><img src="images/Untitled-111.gif"></p>
+<p>&nbsp;</p>
+<h3>Adding a form introduction</h3>
+<p>An email form may begin with introductory text. To add this click on &quot;edit 
+  form introduction&quot;.</p>
+<p><img src="images/Untitled-67.gif"><br>
+  <br>
+  <br>
+  <br>
+  The next screen will allow you to specify any introductory text/ instructions 
+  that you may want to have at the top of the <br>
+  <br>
+  <img src="images/Untitled-68.gif"> </p>
+<h3>Adding a form fieldset</h3>
+<p>Before you can add form fields you must create one or more fieldsets.<br>
+  <br>
+  <img src="images/Untitled-69.gif"><br>
+  <br>
+  The next screen will allow you to provide a legend for the fieldset. The field 
+  ordering will determine in what order the form fields are displayed in.<br>
+  <br>
+  <img src="images/Untitled-77.gif"> <br>
+</p>
+<h3>Adding a form field</h3>
+<p></p>
+<p>Once a fieldset has been created, fields may be added to it by clicking on 
+  &quot;Add field&quot;.</p>
+<p><img src="images/Untitled-71.gif"></p>
+<p>The &quot;Add form field&quot; form will display.</p>
+<p><img src="images/Untitled-78.gif"></p>
+<p>&nbsp;</p>
+<p><strong>Field Label </strong> Descriptive label of field<strong><br>
+  Compulsory </strong>The form will not submit if compulsory fields are left empty<strong><br>
+  Field comment </strong>Ant comment text will appear directoy below the form field.<strong><br>
+  Field type </strong>(Test field, Text area, Drop down menu, Radio buttons)<strong><br>
+  Menu values</strong> ( Only applicable to Drop down menu, Radio buttons)<br>
+</p>
+<p>&nbsp;</p>
+<p>When a fieldset with custom ordering has a number of fields you can reposition 
+  fields in the form with the up and down arrows. <br>
+  <br>
+  <br>
+  <img src="images/Untitled-79.gif"> <br>
+  <br>
+  <br>
+  <br>
+</p>
+<h3>Request tracking module - read only view</h3>
+<p>There are three ways a user with "read only" privileges can view a request tracking module.
+<ol>
+<li>Submit form only</li>	
+<li>Search form only (with read only search results)</li>	
+<li>Submit form and search form</li>		
+</ol>
+The view is selected via "helpdesk options" in content management.
+
+</p>
+
+<p></p>
+<p><img src="images/Untitled-81.gif"></p>
+
+<h3>Options</h3>
+<p>
+
+<p></p>
+<p><img src="images/Untitled-114.gif"></p>
+<h3>Email address</h3>
+<p>The email address specified here will appear in the "from" field of any messages sent from the helpdesk. If this field is blank, then the email address specified in the user account settings of the Helpdesk user will be used.
+If the helpdesk user has no email address specified in their user account, then the $EMAIL_FROM parameter specified in config.php will be used.</P>
+
+
+
+
+<h3>Email notification</h3>
+<p>
+<ol>
+<li><b>No email messages</b> - Email disabled.</li>	
+<li><b>Allow email messages</b> - Email messaging enabled.</li>	
+<li><b>Automatic messages</b>- Email messaging enabled. Also an automated email is sent, when a requests is added. Emails are sent to the email address specified in the Helpdesk options. </li>		
+</ol>	
+	
+	
+	
+</p>
+
+<h3>Display delete button to power users </h3>
+<p>
+Power users can view, search, add, edit and delete requests. You may want to restrict the ability to delete. This option can hide the delete button.
+</p>
+
+<h3>Show 'reuse form data' button </h3>
+
+<p>
+	When a user with "read" privileges submits a request, the form submission is followed by a confirmation message with a link back to a blank request form.
+	There is an optional additional link labelled "reuse form data". This links back to the form populated with data from the previous request. This feature is used on forms where there will be multiple similar requests.
+</p>
+
+ 
+<h3>Display job timer</h3>
+<p>
+If this feature is enabled, users with power or edit privileges can time how long is spent answering requests. When editing a request there is "Start timer" button. The "Stop timer" button will stop the timer and store the timed duration. The timer can be stopped and started repeatedly. 	
+</p>
+
+
+<h3>Text to links</h3>
+<p>
+If this feature is enabled any URLs will be converted to hyperlinks.
+</p>
+
+
+<h3>Assignment</h3>
+<p>
+If this feature is enabled, requests can be assigned to team members, who will receive a notification email. 	
+</p>
+
+
+
+
+
+<h3>Request tracking module - power or edit view</h3>
+<p>A power user is able to view, search, add, edit and delete from the request. An edit user can modify the submit form via content management.</p>
+<p>&nbsp;</p>
+<p><img src="images/Untitled-80.gif"></p>
+<p><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <a href="content_toc.htm">Table of contents</a> </p>
+</body>
+</html>

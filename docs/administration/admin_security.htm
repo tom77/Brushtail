@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Administrator's Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a href="admin_toc.htm">Table of contents</a>
+<h1>Brushtail Administrator's Guide</h1>
+<h2>Security</a></h2>
+
+<h3>Introduction</h3>
+The intranet is most secure if only used on a private network. There two possible scenarios where you may want to make an exception to this.
+
+<h3>Connecting from a remote library site over the internet</h3><br><br>
+Ideally the two library sites would have a private network over a VPN tunnell. If you do not have a VPN I would recommend the following.
+
+<ol>
+<li>Set your intranet (web) server to use SSL encryption. This means all data and passwords are encrypted between server and client browser.</li>
+<li>Set your intranet (web) server to do ip authentication for the remote library locations. Connections from outside the library service would be ignored. A hacker could still spoof the IP address but the would need to crack the passwords.
+<li>Use the IP access controls within Brushtail to restrict access to parts of the intranet.</li>
+
+If your ran your intranet (web) server on a custom port number you could use your network firewall to do implement ip restrictions as well.
+</li>
+</ol>
+
+<h3>Users access from home</h3><br>
+This is when your intranet also becomes an extranet. Setting up SSL on your intranet server is highly recomended. In addition you may want to use the IP access controls in Brushtail to control what users can do from home.
+<br><br>
+<strong>Hypthetical example</strong><br>
+Staff use a generic user account when accessing from work. When accessing from home, staff use individualised user accounts. With most changes to the intranet, the username and IP address are logged.
+When accessing using individual accounts, modules like PC bookngs are restricted by IP. In this case the PC bookings contains patron information and there is no reason for staff being able to access this from home.
+<br><br>
+<h3>Failed logins</h3><br><br>
+Up to 100 failed logins a day will be logged. The attempted username, password and IP are logged.<br><br>
+After 5 failed logins from a user, there will be a 4 second delay before the login screen reappears. This is to discourage automated pasword hacking.
+<h3>PHP</h3><br><br>
+The security of the intranet requires the PHP parameter in th ephp.ini file to be set to
+<br><br> 
+register_globals = Off
+
+
+
+
+
+<br><br><br><br>
+
+ 
+ 
+ <br><br><br>
+
+<a href="admin_toc.htm">Table of contents</a>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Administrator's Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a href="admin_toc.htm">Table of contents</a>
+<h1>Brushtail Administrator's Guide</h1>
+<h2>User accounts</h2>
+
+<h3>Introduction</h3>
+<p><br>
+  <br>
+  Only the administrator user can make create/edit user accounts. <br>
+  <br>
+  Click on the link "Intranet Administration". <br>
+  <br>
+  <br>
+  <img src="images/Untitled-1.gif"><br>
+  <br>
+</p>
+<p>&nbsp;</p>
+<p>Click on &quot;User accounts&quot;.</p>
+<p><br>
+  <img src="images/Untitled-44.gif"><br>
+  The User accounts page has an Add user form at the top of the page, below this 
+  is a list of user accounts that can be edited. <br>
+  <br>
+  <img src="images/Untitled-43.gif"><br>
+</p>
+<h3>Adding a user authenticated by MySQL</h3>
+<p><br>
+  <br>
+  Click on the &quot;Add user&quot; icon <img src="images/user_add.png"> to create an account. <br>
+    <br>
+  Click on the &quot;CSV import&quot; icon <img src="images/calendar_empty.png"> to import users by CSV file. 
+  
+  
+  
+  <br>
+  <strong><br>
+  Username</strong><br>
+  This is the user login name. This must be a unique value, cannot be left blank.<br>
+
+  
+   <strong><br>
+  First Name</strong><br>
+Optional field<br>
+
+  
+   <strong><br>
+Last name</strong><br>
+Optional field<br>
+
+  
+  
+     <strong><br>
+Email address </strong><br>
+Optional field<br>
+
+  
+      <strong><br>
+Payroll number </strong><br>
+Optional field - relevant to leave module<br>
+
+  
+  
+  
+
+  <strong><br>
+  Authentication method</strong><br>
+  The default authentication method is MySQL. <br>
+  <br>
+  <strong>User account</strong><br>
+  If using ldap, Active directory or imap authentication then an appropriate user account needs to be specified.
+  This can be left empty if using MySQL authentication.
+  </p>
+<p><strong>Change password at next logon</strong><br>
+  This can be used to force a user to change password.</p>
+<p><strong>Password never expires</strong><br>
+  If this is set to &quot;no&quot; then the maxmimum password age defined in the 
+  intranet preferences will be enforced. Once a password has expired a user will 
+  be forced to change password at next login.</p>
+
+  <br>
+  <img src="images/Untitled-47.gif" ><br>
+  <br>
+  <br>
+  <br>
+</p>
+
+<br><h3>Import users by CSV file.</h3>
+<p>
+	Users may be imported by CSV file. The default column order is username,first name, last name, email address, password (mysql login), ldap (ldap login). 
+	The ordering of these columns can be adjusted by the upload form. The only mandatory column is username, the others may be absent. The columns that do exist in the csv file must match columns in the upload form.
+	<br>  <img src="images/Untitled-59.gif" ><br>
+	</p>
+<br><h3>Email authentication</h3>
+<p>
+Intranet users may be authenticated via a pop or imap email account. 
+The login name of the email account needs to be entered into the <b>User account</b>  field.<br><br>
+<img src="images/Untitled-49.gif" ><br>
+
+</P><P>
+	 Email authentication requires IMAP to be compiled/enabled in PHP. 
+The host name and port number of the mail server used for authentication needs to be entered in the confg.php file. 
+For fuller documentation on the possible configurations, have a look at  the 
+<a href="http://www.php.net/manual/en/function.imap-open.php">PHP web site</a>.
+	
+</p>
+<p>
+	<b>Examples:</b><br>
+	$MAILSERVER = "{hostname:143/imap}"; <br>
+	$MAILSERVER = "{hostname:110/pop3}"; 
+</p>
+<h3>Adding a user authenticated by LDAP/Active Directory</h3>
+LDAP authentication requires LDAP to be compiled/enabled in PHP.
+<br><br>
+<p>Click on the &quot;Add user&quot; link to create an account. </p>
+<p>LDAP can be used in a &quot;read only&quot; capacity for authenticating passwords. 
+  If you want to be able to force users to update Active Directory passwords you 
+  will also need to the read the &quot;LDAP&quot; page of this manual.</p>
+<p><br>
+  <strong><br>
+  Authentication method</strong><br>
+  Select the authentication method LDAP/Active Directroy. <br>
+  <br>
+  <strong>User account</strong><br>
+  This is the LDAP distinguished name (DN) of the user. Examples:</p>
+<p><br>
+  fred.frog@foo.org<br>
+  CN=fred frog,CN=Users,DC=foo,DC=org <br>
+  <br>
+  (this last format must be used if you want users to be able to update their 
+  windows password)</p>
+<p><strong>Change password at next logon</strong><br>
+  This parameter is not relevant if LDAP is used in a read only capacity. <br>
+  This can be used to force a user to change pasword. This parameter can be used 
+  to update Active Directory passwords. 
+  If the Windows password has been changed by the administrator on the windows server, then "User change password at next login"  must be set on the Intranet not active directory.
+
+</p>
+<p><strong>Password never expires</strong><br>
+  This parameter is not relevant if LDAP is used in a read only capacity.<br>
+  If this is set to &quot;no&quot; then the maxmimum password age defined in the 
+  intranet preferences will be enforced. Once a password has expired a user will 
+  be forced to change password at next login. This parameter can be used to update 
+  Active Directory passwords.</p>
+<p><strong>Account disabled</strong><br>
+  This can be used to disable an account temporarily.</p>
+<br><br>
+<img src="images/Untitled-48.gif" ><br>
+<br>
+<h3>Active Directory passwords</h3>
+If you want to enforce password expiry, or to force a user to change a user at 
+next logon, this can be implemented via the intranet or via Active Directory. 
+If The password has expired in Active Directory then the intranet can force the 
+user to change password. Disabling an account in the intranet will not disable 
+an account in Active Directory. Disabling the account in Active Directory will 
+cause LDAP authentication to fail.<br>
+<br>
+<br>
+
+<br><br>
+<br>
+<a href="admin_toc.htm">Table of contents</a> 
+</body>
+</html>

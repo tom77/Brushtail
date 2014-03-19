@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Content Management Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a href="content_toc.htm">Table of contents</a> 
+<h1>Brushtail Content Management Guide</h1>
+<h2>PC Bookings</a></h2>
+
+<h3>Introduction</h3>
+<p>The pc booking system has 3 components.
+<ul>
+<li>An intranet pc booking system accessible by staff</li>
+<li>Client software that allows computers to self book on the spot, or log into a booked computer.</li>
+<li>A web script to allow patrons to prebook.</li>
+</ul>
+
+The client software and web script are optional components.
+
+<h3>Setup overview</h3>
+<p>To set the PC bookings module the following steps need to be taken via the 
+  content management menu.</p>
+<ol>
+  <li>Creating branch locations</li>
+  <li>Defining location opening hours</li>
+  <li>Define booking types</li>
+  <li>Adding computers to a location</li>
+  <li>Setting public holidays, branch closures or banned patrons.</li>
+</ol>
+<p><img src="images/Untitled-83.gif" ></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>1 - Creating branch locations</h3>
+<p>To add or edit a booking location, click on the &quot;Add Location&quot; link.</p>
+<p><img src="images/Untitled-84.gif" ></p>
+<p>&nbsp;</p>
+<p>Enter a name for the new location.</p>
+<p>&nbsp;</p>
+<p><img src="images/Untitled-85.gif"></p>
+<p>&nbsp;</p>
+<p>The new library will now be displayed in the locations list.</p>
+<p><img src="images/Untitled-86.gif" ></p>
+<p>&nbsp;</p>
+<h3>2 - Defining location opening hours</h3>
+<p>&nbsp;</p>
+<p>Click on the &quot;edit&quot; clock icon beside the location that you want to configure 
+  opening hours.</p>
+<p><img src="images/Untitled-87.gif" ></p>
+<p>&nbsp;</p>
+<p>The next screen allows you to set the opening and closing hours for each day. 
+  Days where the location is closed all day are shaded in grey. To rename the 
+  location, you can change the value in the &quot;location name&quot; field.</p>
+<p><img src="images/Untitled-88.gif" ></p>
+<h3>3 - Define booking types</h3>
+<p><br>
+  Click on the link &quot;booking types&quot;. The booking system requires that 
+  at least one usage type is defined. <br>
+  <br>
+  <img src="images/Untitled-89.gif"><br>
+  <br>
+  <br>
+  <br>
+  Click on the link &quot;Add booking type&quot;. <br>
+  <br>
+  <img src="images/Untitled-90.gif"></p>
+<p>&nbsp;</p>
+<p><img src="images/Untitled-91.gif" ><br>
+  <br>
+  <strong>Charge</strong><br>
+  This field indicates if this booking type has a charge. For example some libraries 
+  do not charge for internet access but charge for word processing.<br>
+  <br>
+  <strong>Booking type only visible to edit users</strong><br>
+  This field can be useful. For example you may want a booking type for PC Maintenance. 
+  You may only want specific users able to book out a PC for maintenance. If 
+  this field was set to YES then the booking form would make this booking type 
+  available to power users only. For more information on power users see administrator 
+  documentation. <br>
+  <br>
+  <strong>Include booking type in booking statistics</strong><br>
+  The booking system gives booking statistics by booking type. You may have some 
+  usage types that you may not want included. An example could be PC maintenance. 
+</p>
+<p><strong>Display print link for booking slips</strong><br>
+  The booking page will display a link for printing booking receipts through a 
+  transaction printer.. </p>
+<p><strong>Display telephone field</strong><br>
+  The booking page will display a field for the patron telephone number.<br>
+  <br>
+  <strong>Booking link colour</strong><br>
+  This is the text colour of bookings on the bookings sheet.
+   <br>
+  <br>
+  
+   <strong>Display booking type on booking sheet</strong><br>
+  If this is enabled, the name of the booking type (eg genealogy, internet etc) will be displayed 
+  underneath each booking on the PC bookings page.
+   <br>
+  <br>
+    
+   <strong>Allow web bookings</strong><br>
+  If this is enabled, this booking type can be booked through the web bookings page. This is a script external to the intranet that can be used for self bookings over the internet.
+   <br>
+  <br> 
+  
+  
+  
+   <strong>Maximum future web bookings per person per branch  </strong>	<br>
+   Affects web bookings.<br>
+  <br>
+ <strong>Maximum web bookings per person per day  </strong>	<br>
+ Affects web bookings.<br>
+  <br>
+ <strong>Maximum hours that can be self booked in day.  </strong><br>
+ Affects web bookings. 0 means no limit<br>
+  <br>
+  
+  
+  
+  
+  
+  
+  
+         <strong>Booking link colour</strong><br>
+		   This will customize the colour of the links on the booking sheet.
+   <br>
+  <br>
+  
+     <br>
+  <br>
+           <strong>Client software parameters</strong><br><br><br>
+		<strong>Client software bookings enabled</strong> <br>
+		This parameter indicates if the booking type can be booked by the booking software.
+		<br><br>
+		
+		
+ 		
+		
+			<strong>Booking mode</strong> <br>
+	<ul>
+<li><b>Barcode mode</b><br>
+Available computer - Patron can self book using barcode.<br>
+Booked computer (booking contains barcode) -  Patron can self checkin using barcode.<br>
+Booked computer (booking HAS NO barcode) -  Staff must checkin patron via intranet.<br>
+
+
+
+</li>		
+<li><b>Mixed mode</b><br>
+Available computer - Patron can self book using barcode.<br>
+Booked computer (booking contains barcode) -  Patron can self checkin using barcode.<br>
+Booked computer (booking HAS NO barcode) -  Booking generates session PIN. Patron must be given PIN to use computer.<br>	
+	
+	
+</li>			
+<li>
+<b>PIN mode</b><br>
+Available computer - No self bookings, patron must book via staff.<br>
+Booked computer - Booking generates session PIN. Patron must be given PIN to use computer.<br>		
+	
+	
+	
+</li>			
+		
+	</ul>
+
+
+
+		<br><br>
+  
+    <strong>Logoff windows at end of session </strong><br>
+  If the public computer is using a mandatory user profile in Windows, it will load a fresh desktop every time it is logged in. Combined with this parameter,the desktop will be cleaned after every booking.
+   <br>
+  <br>
+  
+
+
+		<br><br>
+  
+    <strong>Delete IE history and cleanup desktop</strong><br>
+  PCBooker will delete Internet Explorer history/cache/cookies/passwords at the end of every booking. The Delete history popup will be momentarily visible to the patron. For this to work some parameters in group policy (local or domain) regarding Internet Explorer may need to be set:<br>
+  Turn off automatic crash detection.<br>
+  Turn off reopen last browsing session.<br>
+  Allow deleting history on exit.<br>
+  Empty Temporary Internet Files folder when browser is closed.  <br>
+ <br>
+  Documents and downloads folders are deleted and recreated. All files on the desktop except shortcuts are deleted.
+    <br>
+ <br>
+  
+
+
+		<br><br>
+  
+    <strong>Number of minutes a patron is locked out from rebooking a self booking PC.</strong><br>
+  This parameter applies to computers that are self booking. This parameter can stop a user from immediately rebooking a computer when the session finishes.
+  This might be used with a "15 minute" computer. You may want a "cooling off" period to allow other users to access the computer.
+   <br>
+  <br>
+  
+  <strong>Maximum time that can be self booked in day. 0 means no limit.</strong><br>
+  This is a limit on the amount of time patrons can book themselves in a particular day. There is no restriction on bookings via staff.   <br>
+  <br>
+  
+      <strong>Number of minutes until unfulfilled bookings are cancelled on self booking computers.</strong><br>
+   This parameter applies to computers that are self booking. Bookings can be cancelled after a designated number of minutes if the booked person does not show up.
+   <br>
+  <br>
+  
+       <strong>Self bookings can be extended</strong><br>
+   This parameter applies to computers that are self booking. Before the end of the booked session, the user will be offered an extension of the booking.
+   <br>
+  <br>
+         <strong>End of session warnings</strong><br>
+   This parameter applies to computers that are self booking. Up to 2 warnings can be customized. The number of minutes indicates how may minutes before the end of the session the message will appear.
+   0 minutes will disable a warning. The text of the warning can be customized in the text box.
+   <br>
+  <br>
+    
+   <br>
+  <br>
+   </p>
+<h3>4 - Adding computers to a location</h3>
+<p>&nbsp;</p>
+<p>To add computers to a location, click on the computer icon beside 
+  the location you want to add to.</p>
+<p><br>
+  <img src="images/Untitled-92.gif"><br>
+  Click on the "add" icon.<br>
+  <br>
+  <img src="images/Untitled-93.gif"> <br>
+  <br>
+  <br>
+  <br>
+  The &quot;add computer&quot; form will display allowing you to create a computer.<br>
+  <br>
+  <img src="images/Untitled-94.gif"></p>
+  <p><strong>Name<br>
+  </strong>Computer name as it appears on the staff pc bookings page.</p>
+  
+
+  
+  <p><strong> Display computer on booking sheet<br>
+  </strong>If this is set to "no", then the computers will not be displayed on the bookings page by default. However staff can display it by clicking on a "show computers" link. Computers with ethe self booking client software would be set to "No".</p>
+   <img src="images/Untitled-105.gif">
+  
+<p><strong>Allocated booking types<br>
+  </strong>This allows you to associate one or more booking types to a computer. 
+  At least one booking type must be associated to the computer before it can be 
+  booked.</p>
+  
+  <p><strong>Client authentication<br>
+  </strong>
+    The self booking computers can be authenticated ( the machine not the user) by ip address or password. 
+  <Ul>
+  <li>IP address. This requires that there is no NAT firewall between the intranet server and client machines. </li>
+  If the client PC is running Apache as part of client installation, you can enable "poll client". The intranet will immediately notify the client PC of booking changes, otherwise client PC will poll every 30 seconds.</li>
+  <li>Password This requires that the password is configured in the client pc booking software.<br>
+  
+ 
+
+  
+  
+  </Ul>
+  
+  
+
+  
+  
+<p><strong>Display colour<br>
+  </strong>Default the bookings page will display using alternating row colours 
+  using the intranet colour scheme. You can however have the column for each computer 
+  display in a defined colour. This may be of use to prevent staff error, if you 
+  have different booking types associated to different computers.</p>
+<p>&nbsp;</p>
+<p><img src="images/Untitled-95.gif"></p>
+<p>&nbsp;</p>
+<p>If one or more computers have been defined, they will be listed visually in 
+  the order they will be appear on the bookings page. The  arrows allow 
+  you to customize the column order of the bookings page.</p>
+<p> <br>
+  <br>
+</p>
+<h3>5 - Setting public holidays, branch closures or banned patrons.</h3>
+<p><br>
+  <br>
+  Public holidays are days that will make all booking locations display as closed. 
+  Public holidays are defined by the intranet administrator.<br>
+  <br>
+  <img src="images/Untitled-96.gif"></p>
+<p>To close a single location for a period of time click on the &quot;Branch closures&quot; 
+  link. This may be useful if a single branch was closed for renovations.</p>
+<p><img src="images/Untitled-97.gif"><br>
+  <br>
+  To block a patron from the booking system you may add patron barcodes that are 
+  blocked for a defined period of time. To do this click on the &quot;Banned patrons&quot; 
+  link. </p>
+<p>&nbsp;</p>
+<p><img src="images/Untitled-98.gif"><br>
+  <br>
+  <br>
+  <h3>Self booking client</h3>
+<p>This is client software that allows patrons to book themselves onto a public computer. The booking may be done on the spot or may be prebooked by staff or via web interface.
+<a href="../administration/admin_pcbookings.htm">More details</a></p>
+
+<h3>web bookings</h3>
+<p>This is a script that allows non intranet users (patrons) to prebook computers.
+<a href="../administration/admin_webbookings.htm">More details</a></p>
+
+  <a href="content_toc.htm">Table of contents</a> </p>
+</body>
+</html>

@@ -1,0 +1,2 @@
+insert into page_views values('82','695','2012-05-17')
+insert into page_views values('82','695','2012-05-17')

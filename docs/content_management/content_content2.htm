@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Content Management Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a href="content_toc.htm">Table of contents</a> 
+<h1>Brushtail Content Management Guide</h1>
+<h2>Editing content pages</h2>
+
+<h3>Introduction</h3>
+<p>
+	A user with read privileges may read a content page. <br>
+	A user with power user privileges may post comments on a content page. <br>
+	A user with edit privileges may edit a content page. </p>
+
+ <h3>Main menu</h3>
+<p>By default a content page accessed through the intranet main menu will display in "normal mode". Clicking on the edit icon <img src="images/page_white_edit.png" > will change the page into edit mode.
+Only existing pages can be edited this way.</p><p>
+<img src="images/Untitled-104.gif" ></p>
+
+<h3>Content Management</h3>
+<p>A user with edit privileges may also edit a content page via the Content management menu. Pages accessed via the content management menu are always in edit mode.
+Editing via the content management menu also gives you the ability to add/remove pages and change page properties.
+
+</p>
+ 
+ <br><br>
+<p>To edit a content page click on the edit icon <img src="images/page_white_edit.png" >.</p>
+<p><img src="images/Untitled-51.gif" ></p>
+<h3>Add a paragraph</h3>
+Click on the add paragraph icon <br><img src="images/addpara.png" >. 
+<p><br>
+
+
+
+<h3>Add a widget</h3>
+<img src="images/addwidget.png" ><br>
+Widgets include
+<ul>
+<li>Calendar widget will display today's events from a calendar.</li>
+<li>Room bookings widget will display todays bookings.</li>
+<li>Noticeboard widget will display summary of recent posts.</li>
+<li>Content widget will display a javascript slideshow of a content page. Only one slideshow on a page is allowed. The content page being shown as slideshow must be enabled as an rss feed. This is done via page properties.</li>
+</ul>
+
+
+<h3>Add a box</h3>
+<img src="images/addbox.png" >
+<p>
+Adding a bordered box. The box cannot be moved, however content paragraphs and widgets may be moved in or out of boxes.
+</p>
+
+<h3>Add a column</h3>
+<img src="images/addcolumn.png" >
+<p>
+Adding a bordered column. The column cannot be moved, however content paragraphs and widgets may be moved in or out of cloumns.
+</p>
+
+
+<h3>Wysiwyg editors</h3>
+Brushtail has a choice of three different WYSIWYG editors.
+<ul>
+<li><a href="http://www.openwebware.com/">openWYSIWYG</a></li>
+<li><a href="http://ckeditor.com/">CKEditor</a></li>
+<li><a href="http://nicedit.com/">NicEdit</a></li>
+</ul>
+
+
+The choice of WYSIWYG is configured in includes/config.php<br><br>
+//WYSIWYG editor  Values:openWYSIWYG , CKEditor, NicEdit<br>
+$WYSIWYG = "NicEdit";
+<p>
+The wysiwyg editors allows content editors to format content without needing to know any html or tags. It is disabled for each module by default and can only be enabled
+by the intranet administrator. The wysiwyg editors allows html input. This can be a potential security risk. So the wysiwyg editor should only be available to trusted users.
+The Administrator can enable the wysiwyg by going to Intranet administration > Navigation menu and then edit the relevant module.
+	
+	
+	
+</p>
+
+<p><b>openWYSIWYG</b><br><img src="images/openWYSIWYG.gif" ></p>
+<p><b>CKEditor</b><br><img src="images/CKEditor.gif" ></p>
+<p><b>NicEdit</b><br><img src="images/NicEdit.gif" ></p>
+
+<h3>Without wysiwyg editor (default)</h3>
+<p><img src="images/Untitled-53.gif" ><br /><br /></p>
+<p>This is the default Add paragraph form. The text field will retain any line 
+  breaks. HTML cannot be used, instead there are custom tags.</p>
+<p>HTML is stripped from content. Formatting can only be done using formatting tags.</p>
+<p>[bold]this is bold[/bold]<br><br>
+
+<b>this is bold</b>
+<br><br><br>
+[italic]this is italic[/italic]<br><br>
+
+<i>this is italic</i>
+<br><br><br>
+[link=http://www.blah.com]this is a link[/link]<br><br>
+
+<a href="http://www.blah.com">This is a link</a>
+<br><br><br>
+
+[nwlink=http://www.blah.com]this is a link that opens in a new window[/nwlink]<br><br>
+
+<a href="http://www.blah.com" target="parent">This is a link that opens in a new window</a>
+<br><br><br>
+[bulletlist]<br>
+
+[listitem] bullet one[/listitem]<br>
+[listitem] bullet two[/listitem]<br>
+[listitem] bullet three[/listitem]<br>
+[/bulletlist]<br><br>
+
+
+<ul>
+<li>bullet one</li>
+<li>bullet two</li>
+<li>bullet three</li>
+</ul>
+
+<br><br><br>
+[numberlist]<br>
+[listitem] number one[/listitem]<br>
+[listitem] number two[/listitem]<br>
+[listitem] number three[/listitem]<br>
+[/numberlist]<br><br>
+
+
+<ol>
+<li>number one</li>
+<li>number two</li>
+<li>number three</li>
+</ol><br><br>
+
+<p>RSS feeds can be embedded into page content using  tags. See the section below</p><br><br>
+[indent]this is indented[/indent]<br><br>
+
+<blockquote>this is indented</blockquote><br><br><br>
+
+
+[preformat]<br><br>
+
+cat<br>
+&nbsp;&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;hat<br>
+[/preformat]
+<pre>
+cat
+  in
+   a
+    hat
+</pre>
+&nbsp;</p>
+<p><br>
+</p>
+
+<h3>RSS feed brief</h3>
+<p>RSS feeds can be embedded into page content.. 
+<br><br><b>[rss_brief]feed url[/rss_brief]</b> will embedd rss content using javascript after content page loads (good for remote content).
+<br><br><b>[rss_brief_inline]feed url[/rss_brief_inline]</b> will embedd rss via php before content page loads (good for local content).
+<br /><br />
+Will display an rss feed as a bullet list without item descriptions. 
+The list may be kept to specified length using the max parameter. <br /><br /> <b>[rss_brief max=10]feed url[/rss_brief]</b>
+
+
+
+</p>
+
+<h3>RSS feed full</h3>
+
+Will display an rss feed with item descriptions.
+<br><br><b>[rss_full]feed url[/rss_full]</b>will embedd rss content using javascript after content page loads (good for remote content).
+<br><br><b>[rss_full_inline]feed url[/rss_full_inline]</b> will embedd rss via php before content page loads (good for local content).
+
+The list may be kept to specified length using the max parameter. <br /><br /><b>[rss_full max=10]feed url[/rss_full]</b>
+<br /><br />
+
+</p>
+
+<h3>Tabbed RSS</h3>
+
+<b>[rss_brief]label1:url1,label2::url2,label3::url3[/rss_brief]<br /><br /></b>Will display an rss feeds using tabs for a compact display.
+<br />
+Each feed entry is a Tab label name and feed address separated by <b>::</b> <br /> Each feed entry is the separated by a comma <b>,</b> 
+The max parameter may also be used in this context.<br /><br /> 
+[rss_brief max=10]label1:url1,label2::url2,label3::url3[/rss_brief]
+
+
+<h3>Adding images</h3>
+<p></p>
+<p>Images can be added to a paragraph. Images will be displayed between the title 
+  and text of a paragraph. Click on the add picture icon <img src="images/picture_add.png" ></p>
+
+<p></p>
+<p></p>
+<p></p>
+<p><img src="images/Untitled-54.gif" =></p>
+<p>&nbsp;</p>
+<p>A dialogue box will be displayed you to browse to file location to be uploaded.</p>
+<p>&nbsp;</p>
+<p><img src="images/Untitled-55.gif" ><br>
+</p>
+<h3>Adding documents</h3>
+<p> Documents can be added to a paragraph. Documents will be displayed at the 
+  footer of a paragraph. Click on the paperclip icon <img src="images/attach.png" ></p>
+<p></p>
+<p><img src="images/Untitled-56.gif"></p>
+<p>A dialogue box will be displayed you to browse to file location to be uploaded. 
+  In addition you may put information in the are labelled &quot; &quot;Document 
+  metadata keywords&quot;. If this field is used then documents may appear in the 
+  search results of an intranet keyword search.</p>
+<p></p>
+<p><img src="images/Untitled-57.gif" ></p>
+<p></p>
+<p></p>
+<h3>Ordering of paragraphs</h3>
+<p>If a Paragraph ordering of a page has been set to &quot;Custom&quot;, then 
+  up and down arrows will displayed to move paragraphs up and down the page.</p>
+<p><img src="images/Untitled-58.gif" ></p>
+
+<h3>Editor details</h3>
+<p>The time, ip address and intranet login of the last edit to a paragraph is displayed to the administrator beneath the paragraph title..</p>
+<p><img src="images/Untitled-109.gif" ></p>
+<p> </p>
+<p></p>
+<p><br>
+  <br>
+  <a href="content_toc.htm">Table of contents</a> </p>
+</body>
+</html>

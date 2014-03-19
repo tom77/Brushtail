@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Administrator's Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+	<style>
+		.gray {color:gray}
+		
+	</style>
+</head>
+
+<body>
+<a href="admin_toc.htm">Table of contents</a>
+<h1>Brushtail Administrator's Guide</h1>
+<h2>Brushtail installation</a></h2>
+
+
+<h3>Installation Requirements</h3>
+<ul>
+  <li><strong>Web server with PHP 5 </strong> <a href="http://www.php.net">PHP</a> <br>
+    <br>
+  </li>
+  <li><strong>Database</strong> <ul>
+  	<li><a href="http://www.mysql.com">MySQL</a> database</li>
+	<li>Or if using sqlite storage, no database software required.</li>
+	
+  </ul></li>
+</ul>
+
+<h3>Upgrade the Brushtail database</h3>
+<h4>MySQL</h4>
+<p>Brushtail MySQL can be upgraded from 3.0 upwards  to 8.0 using a php script.</p>
+<p>Load the mysql_upgrade_8.0.php script in your web browser, something like http://localhost/intranet/sql/mysql_upgrade_8.0.php</p>
+<p>The upgrade script requires:</p>
+<ul>
+	 <li> Version 3 upwards of Brushtail.</li>
+
+  <li>A MySQL user account with all privileges. </li>
+</ul>
+<h4>SQLITE3</h4>
+
+<ol>
+      
+     <li>Apply upgrade script to the sqlite3 schema. <b>sqlite_upgrade_7.0_to_8.0.sql</b>.<br>
+     This can be done using a command line version of sqlite <br>(eg sqlite3 intranet.db < sqlite_upgrade__7.0_to_8.0.sql)
+     <br> Alternatively you could log into the intranet as administrator (you will get errors) and then copy and paste the sql into the 
+     "SQLITE Execute SQL" administrator page.
+     
+     
+     </li>    
+    
+</ol>
+
+
+
+<h3>MySQL Database</h3><br><br>
+<ol>
+<li>Create a MySQL database for the intranet.</li>
+<li>Create a MySQL user for the intranet</li>
+  <li>Grant this user select, delete, update, insert and lock table privileges 
+    on this database.</li>
+  <li>Load the file <strong>mysql_8.0.sql</strong>, contained in the sql directory, 
+    into the MySQL database. This file contains sql statements that will create 
+    and populate the required database tables.</li>
+
+</ol>
+
+<h3>SQLITE Database</h3>
+<ol>
+<li>Copy intranet.sqlite3 file from the "sql" to desired location on the intranet server, preferably not in web server documents directory.</li>
+<li>Edit config.php and set path to sqlite database file, also set database format to "sqlite3"</li>
+<li>Check that the user account the web server runs as has write permissions to this file.</li>
+</ol>
+
+<br><br>
+
+
+
+<h3>Configuration File</h3>
+<p>Place the intranet files in the webserver document directory. Edit the file 
+  <strong>config.php</strong> in the<strong> includes</strong> folder.<br>
+</p>
+<p><b>Database format  (Compulsory)</b>
+	<br>$DATABASE_FORMAT needs to be set to "mysqli", ""mysql" , "sqlite" or "sqlite3".<br>
+        Default for MySQL is now "mysqli" , use "mysql" if you are using MySQL below versions 4.1<br>
+	Brushtail 5 sqlite format was "sqlite"<br>
+	Brushtail 8 sqlite format is "sqlite3"
+</p>
+<p> <b>MySQL CONNECTIONS SETTINGS</B><br>
+   <span class="gray">These parameters must be set for the intranet to coonect to MySQL.</span><br>
+  <br>
+  $DBUSER= &quot;usernamet&quot;;<br>
+  $DBPASSWORD = &quot;userpassword&quot;;<br>
+  $DATABASE = &quot;intranet&quot;;<br>
+  $HOST = &quot;localhost&quot;;</p>
+  <p> <b>SQLITE SETTINGS</B><br>
+  
+ <span class="gray"> Enter path to sqlite database file. </span><br>
+$SQLITE = "intranet.sqlite3"</p>
+
+<p>
+<b>date.timezone</b><br>
+<span class="gray">if date.timezone not configured in php.ini, use the following line in config.php (with appropriate timezone)</span><br>
+date_default_timezone_set('Australia/Melbourne');
+</p>
+
+<p><b>LOCALE SETTINGS (optional)</b><br> <span class="gray">You can also set the language for the calendars so the month and day names 
+  display in the correct language. Some examples.</span></p>
+<p>
+    
+setlocale(LC_ALL, 'ENA'); //Australia WINDOWS<br>
+setlocale(LC_TIME, 'uk_UK', 'uk','en_GB');  //AUSTRALIA LINUX<br>
+setlocale(LC_MONETARY, 'us_US', 'us','en_US'); //AUSTRALIA LINUX<br>
+setlocale(LC_ALL, 'FRA'); // FRANCE WINDOWS<br>
+setlocale(LC_ALL, 'fr_FR@euro', 'fr_FR', 'fr');   //FRANCE LINUX<br>
+setlocale(LC_ALL, 'DEU'); // GERMANY WINDOWS<br>
+setlocale(LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge'); //GERMANY LINUX</p>
+
+
+<p><b>LDAP SETTINGS (optional)</b><br> <span class="gray">Requires php LDAP support. 
+LDAP can be used to authenticate users. The LDAPHOST parameter. Indicates the 
+  LDAP or Active directory server. The other LDAP parameters if you want users 
+  to be able update their Windows password via the intranet. For testing LDAP authentication try using the intranet/main/ldaptest.php</a> utility.</span></p>
+<p>$LDAPHOST = &quot;servername&quot;;</p>
+
+
+<p><b>IMAP settings (optional)</b><br>
+Requires php IMAP support. Used for authenticating users via imap/pop3. Check php website for information on syntax. http://www.php.net/manual/en/function.imap-open.php</p>
+<p>$MAILSERVER = "{10.10.10.10:143/imap}";</p>
+
+<p><b>CAPTCHA</b><br>
+This parameter will enable a captcha on intranet forms. Captcha is always enabled on the public forms  in the web folder.<br>
+$CAPTCHA = "on";
+</p>
+
+<p><b>Intranet PC bookings</b><br>
+$REFRESH = 5; 
+<br>
+ <span class="gray">This parameter indicates the interval in minutes the staff booking screen automatically refreshes.</span><br>
+$PCFOOTER = "
+Book a pc online at 
+www.foo.org/web/pcbookings.php";<br>
+
+
+ <span class="gray">PC booking slips footer text.</span><br><br>
+</p>
+
+
+<p><b>Online pc bookings (optional)</b>
+
+<br>
+$PCAUTHENTICATION = "disabled"; <br>
+ <span class="gray">values: disabled/autoaccept/local/web/ldap/email/soap</span>
+<br>
+$BOOKINGINTERVAL = 30;
+<br> <span class="gray">This parameter indicates the interval in minutes used on the list of available booking times.</span><br>
+$DAYSAHEAD = 7; <br>
+<span class="gray">This is how many days ahead you can book</span><br>
+$DISPLAYPCNAME = 1; <br>
+ <span class="gray">Set to 0 to hide the pc in the booking confirmation.</span><br>
+ $CURRENTWEEKONLY = 0;<br>
+ <span class="gray">bookings can only be made for current week</span><br>
+ $DELAY = 1; <br>
+ <span class="gray">Delay in hours before next web booking can commence from end of any existing bookings</span><br>
+$BOOKBY = "PC"; <br>
+ <span class="gray">Affects web/book.php allows user to select computer to book, is allocated a computer. Values:PC or TYPE. </span><br>
+$PCIMAGE = "0";<br>
+<span class="gray">Add an image to computer (or games console) - used for the web/bookings.php slideshow that displays upcoming bookings.</span><br>
+
+ 
+ 
+ 
+ 
+ 
+</p>
+
+
+<p><b>Datepicker</b><br>
+Date format for the datepicker widget. The datepicker is used in room booking and leave modules. values %d-%m-%Y or %m-%d-%Y<br>
+
+$DATEFORMAT = "%d-%m-%Y";<br>
+
+
+
+<p><b>Public event bookings (optional)</b><br>
+ <span class="gray">For a fuller discussion see the <a href="admin_webbookings.htm">web bookings</a> page of the Administrator manual.</span>
+<br>
+
+$EVENTAUTHENTICATION = "web";<br />
+<span class="gray">values: disabled/autoaccept/local/web/ldap/email/registration/soap</span><br />
+$UPCOMING_EVENTS_DAYS_AHEAD = 30;
+<span class="gray"> How may days ahead the upcoming events list will display</span><br />
+$MAX_WEB_BOOKINGS = 3;<br />
+<span class="gray">maximum number of event places that can be placed in a single booking</span><br />
+$WEB_CALENDAR_DIRECTORY_URL = "http://intranet/web/";<br />
+<span class="gray">email registration confirmation url</span><br />
+$EVENT_EMAIL_FOOTER = "
+For more events visit www.foolibrary.org/webcal.php
+or Telephone XXXXXXXXXXXX.
+";<br />
+<span class="gray">footer attached to emails sent by event booking sysytem</span><br />
+$HOME_LINK = "http://librarywebsite";<br />
+$HOME_LABEL = "Library homepage";<br />
+<br><br> 
+if authentication is set to web, specify web catalogue form parameters. This allows patrons to make bookings that are authenticated via a library system web catalogue (or any web form!).<br>
+Registration means that patrons can sign up using an email address and book events.</span>
+<p>
+<p><b>Web catalogue parameters - patron authentication (optional)</b><br>
+$WEBHOST = 'webcatalogue'; <span class="gray">Get this value from login form action parameter</span><br> 
+$WEBPATH = '/urlpath/'; <span class="gray">Get this value from login form action parameter</span><br>
+$STRINGACTION = "accept"; <span class="gray">values: accept/deny</span><br>
+$STRING = "login successfull"; <span class="gray">Log into web catalogue and look at source html for a text string that is unique to a successful/insuccessful login</span><br>
+$USERFIELD = "user_id"; <span class="gray">Get this value from login form source html</span><br>
+$PASSWORDFIELD = "password"; <span class="gray">Get this value from login form source html</span><br>
+$OTHERFIELDS["example1"] = ""; 
+$OTHERFIELDS["example2"] = ""; <span class="gray">Get hidden input from login form source html. If there are no hidden fields delete these values.</span>
+</p>
+<p>
+	 <span class="gray">
+To test these parameters use the sql/webtest.php utility. This will actually display what is ouput in response to the web authentication. 
+This will help you identify the "string" you will be looking for.	If the result page is a redirect then $CHECKREDIRECT = "yes";
+<br><br>
+Some web catalogues have hidden input fields with temporary dynamic data. To solve this problem,Brushtail can download the opac login page, strip the hidden field values and submit these values with the barcode and PIN.
+For example, if the opac login is http://opacaddress/opacloginpage.htm, then the config parameter would be: </span><br><br>
+
+$OTHERFIELDS["formurl"] = "http://opacaddress/opacloginpage.htm";
+
+<br><br>
+ <span class="gray">
+If the intranet server cannot connect to the web catalogue directly, requiring a web proxy, then the proxy IP address and port number will need to be set with the following parameters:
+</span>
+<br><br>
+$PROXY_IP = "";<br>
+$PROXY_PORT = "";
+	
+</p>
+
+
+
+
+<p><b>Compression (optional)</b><br> 
+$COMPRESSION = "on";	<br>
+<span class="gray">
+PHP can gzip compress page html output for faster page loading. Not necessary if the web server is already performing compression. Requires zlip compression enabled in PHP. values "on" or "off".<br>
+</span>
+<br>
+<b>Date format for date picker widget</b><br> 
+
+<span class="gray">//values %d-%m-%Y or %m-%d-%Y</span><br> 
+$DATEFORMAT = "%d-%m-%Y";<br> <br>
+
+<b>Calendars</b><br>
+<span class="gray">//Calendar week starts on "SUN or ""MON"</span><br> 
+$CALENDAR_START ="MON";<br>
+<span class="gray">//Display day names in each calendar cell.</span><br>
+$CALENDAR_DAY_NAMES ="off";
+
+
+
+<br><br>
+
+<b>WYSIWYG editor</b>
+<span class="gray">//WYSIWYG editor  Values:openWYSIWYG , CKEditor, NicEdit</span><br> 
+$WYSIWYG = "NicEdit";
+
+	
+</p>
+
+<p><b>Email message parameters (optional)</b><br>
+ $SMTP = "10.10.10.10";
+<br>
+ <span class="gray">
+This value can be set on windows servers to specify the SMTP mail server to send email messages to
+By default this is set for the entire server in the php.ini
+By setting the value here the server can have multiple brushtail installations sending email to different servers.</span>
+<br>
+$EMAIL_FROM = "intranet@intranet";<br>
+ <span class="gray">
+You can specify the email from address, that overides PHP default.</span>
+
+
+
+<h3>Log in as administrator</h3>
+<p>Delete the sql directory.</p>
+<p>Enter the url of the intranet eg http://hostname/intranet/index.php<br>
+  Log in as user name "administrator" , default password "administrator". </p>
+<p>&nbsp;</p>
+<p>Change the administrator password. the Intranet got to &quot;Intranet Administration</p>
+<p>To change the administrator passwordgot to &quot;Intranet Administration&quot;, 
+  then click on &quot;User accounts&quot; and edit the administrator account.</p>
+<p><img src="images/Untitled-44.gif"></p>
+<p>&nbsp;</p>
+<p>To configure the Intranet got to &quot;Intranet Administration&quot;, then 
+  click on &quot;Intranet Preferences&quot;</p>
+<p>&nbsp;</p>
+<p><img src="images/Untitled-18.gif"></p>
+<p>&nbsp;</p>
+<p>See the page &quot;Intranet Preferences&quot; of this manual for more details.</p>
+<h3>File Uploads</h3>
+If you want to be able to upload documents on the intranet there are some server parameters that may limit this.<br>
+<br>
+<br>
+<br><br>
+
+<strong>PHP</strong><br>
+
+
+
+<strong>php.ini</strong><br>
+post_max_size = 8 M<br>
+upload_max_filesize = 8M<br>
+file_uploads = On<br>
+memory_limit = 10M<br>   <br>
+
+<strong>Proxy server</strong><br>
+If your web browser goes through a proxy this may limit uploads. For example the squid proxy server has a parameter reply_body_max_size  that limits file uploads.   
+
+
+<h3>Email forms</h3>
+To be able to use intranet forms that post email messages, PHP may need to be configured to use your local mail server. This is configured in the php.ini file.<br><br>
+[mail function]<br>
+; For Win32 only.<br>
+SMTP = localhost<br>
+<br><br>
+; For Win32 only.<br>
+sendmail_from = administrator@yourdomain.com<br><br>
+
+; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").<br>
+sendmail_path = /usr/sbin/sendmail -t -i<br><br>
+
+
+
+
+
+
+
+
+
+<br>
+ <br><br><br>
+
+<a href="admin_toc.htm">Table of contents</a>
+</body>
+</html>

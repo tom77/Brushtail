@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Brushtail Administrator's Guide</title>
+	<link href="../manual.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a href="admin_toc.htm">Table of contents</a>
+<h1>Brushtail Administrator's Guide</h1>
+
+
+<h2>Web PC bookings, Web event bookings and online requests</h2>
+
+</p>
+<p>
+<h3>PC bookings</h3><br>
+ <img src="images/Untitled-52.gif">
+	</p>
+<p><h3>Web calendar</h3><br>
+	  <img src="images/Untitled-53.gif">	
+<br>
+</p>
+<p><h3>Online requests</h3><br>
+	  <img src="images/Untitled-57.gif">	
+<br>
+</p>
+
+<h3>Files</h3>
+<p>
+	<b>PC Bookings</b><br>
+        
+        <ul>
+<li><b>intranet/web/book.php  - </b>  PC bookings - choose by booking type, computer allocated by booking system. Ajax version</li> 
+<li><b>intranet/web/pcbookings.php</b>  PC bookings - choose by booking type, computer allocated by booking system. Ajax version</li> 	
+<li><b>intranet/web/bookpc.php</b>  This allows the patron to nominate the computer they want to book.</li>	
+<li><b>intranet/web/bookings.php</b>  A rotating slideshow indicating upcoming bookings for computers. This was developed for using the pc bookings module for managing games console bookings.</li>	
+	</ul>
+        
+        
+        
+        
+For a computer to be booked via pcbookings.php, the computer must be allocated a booking type that has web bookings enabled. 
+This is done through the content management area.
+The following 2 booking type parameters are relevant.<br><br>
+<ul>
+<li>Allow web bookings</li>
+<li>Maximum future web bookings per person per branch.</li>
+<li>Maximum future web bookings per person per day.</li>
+<li>Maximum hours that can be self booked in day. 0 means no limit.</li>
+</ul>
+</p>
+<p>
+	<b>Event Bookings</b><br>
+        
+        <ul>
+	
+<li><b>intranet/web/webcal.php</b>  Event bookings</li>	
+
+	</ul>
+        
+        
+For an event to be booked via webcalendar.php, there must be at least one calendar "event type" that has web bookings enabled. 
+This is done by the intranet adminsitrator, in the "Intranet Administration" area, under the menu item "Calendars".
+The following event type parameter is relevant.<br><br>
+<ul>
+<li>Web bookings = "Display and allow web bookings"</li>
+</ul>
+</p>
+
+
+<p>
+	<b>Online request form</b><br>
+        <ul>
+
+<li><b>intranet/web/ask.php</b>  Online request form</li>	
+	</ul>
+This is a public interface to the helpdesk module. To enable the request form, edit the config section at the top of the page to the following:
+<ol>
+<li><b>$enabled = true;</b></li>	
+<li><b>$module_id=;</b> You need to give this parameter the module ID of the helpdesk you want to submit to.
+ This can be found Intranet administration > Navigation menu in the ID column.</li>
+	<li><b>$banner</b> This allows you to customize the banner text at the top of the page.</li>
+</ol>
+
+
+Multiple instances of the helpdesk module may be created by the intranet administrator. You can create a web interface for each module by making copies of the ask.php script. Each script will need a unique module_id.<br><br>
+
+</p>
+
+<h3>Configuration</h3><br>
+If the "web" folder (containing pcbookings.php and webcalendar.php) is moved to another server. You will need to accompany it with a copy of the "includes" folder.
+</p>
+
+<h3>Customize Look</h3><br>
+Edit the web/bookings.css to cutomize the appearance of the web pc bookings, web calendar and online request form.
+</p>
+
+<h3>Authentication</h3><p>
+	There are a list of options for authenticating web bookings. This is configured in the <b>includes/config.php</b><br>
+The $PCAUTHENTICATION parameter affects PC bookings via PC client & via web interface and has the following options.
+<ul>
+<li>disabled</li>
+<li>local</li>
+<li>web</li>
+<li>ldap</li>	
+<li>email</li>	
+<li>soap</li>	
+</ul>
+
+The $EVENTAUTHENTICATION parameter affects event bookings via web interface and has the following options.
+<ul>
+<li>disabled</li>
+<li>autoaccept</li>
+<li>local</li>
+<li>web</li>
+<li>ldap</li>	
+<li>email</li>	
+<li>registration</li>	
+<li>soap</li>	
+</ul>
+</p>
+<h3>disabled</h3><p>This is the default. Web bookings for PCs and events is disabled.</p>
+<h3>autoaccept</h3><p>This setting allows users to book without being authenticated.</p>
+<h3>local</h3><p>This setting allows users to be authenticated via passwords set by staff using the pc bookings module of the intranet.</p>
+<p><img src="images/Untitled-50.gif"></p>
+<p><img src="images/Untitled-51.gif"></p>
+
+<h3>web</h3>
+<p>This allows the bookings to be authenticated against a web login form. For example, most library web catalogues have a login form for patrons to be able to login and then reserve and renew books. 
+Such a login in form can be used by Brushtail to authenticate patrons.  
+This is a way of authenticating patrons via a library management system.
+It is not restricted to web catalogues, it could be used with any web login form.</p>
+<p>The way it works is that Brushtail logs into the web catalogue using the supplied credentials. If the login works then the patron is authenticated.</p>
+<p>This method of authentication does require you to look at the html source code of the form you want authenticate with. 
+Then edit the following parameters in includes/config.php
+<br><br>
+<b>$WEBHOST</b> - This is the domain name/ip of the web catalogue server<br>
+<b>$WEBPATH</b> - This FULL directory path of the form action attribute. <br>
+The form source code may use a relative url, you will need to work out what the FULL url is.<br>
+<b>$STRINGACTION</b> - Accept or deny. Are you testing for login success or failure? It is best if you are testing for a successful login.
+<br><b>$STRING</b> - Is there a distinctive string of text that a successful login page will contain?<br>
+<b>$USERFIELD</b> - This is the name of the username field.<br>
+<b>$PASSWORDFIELD</b> - This is the name of the password field.<br>
+<b>$OTHERFIELDS</b> - If the from has hidden fields this parameter can be used to create an array of hidden values. If there is more than one hidden field simply repeat the parameter. <br><br>
+
+<b>Example web catalogue login form</b><br><br>
+
+ 	<b>&#60;form action="/path/script" method="post"&#62;<br>
+ 	&#60;input type="text" name="username"&#62;<br>
+ 	&#60;input type="text" name="password"&#62;<br>
+	&#60;input type="hidden" name="library" value="banana"&#62;<br>
+ 	&#60;input type="submit"&#62;<br>
+ 	&#60;/form&#62;</b><br>
+	<br>
+$WEBHOST = 'webcatalogue';<br>
+$WEBPATH = '/path/script';<br>
+$STRINGACTION = "accept";<br>
+$STRING = "you are logged in";<br>
+$USERFIELD = "username";<br>
+$PASSWORDFIELD = "password";<br>
+$OTHERFIELDS["library"] = "banana";
+
+<p>
+To test these parameters use the sql/webtest.php utility. This will actually display what output in response to the web authentication. This will help you identify the "string" you will be looking for.	</p>
+<p>
+Some web catalogues have hidden input fields with temporary dynamic data. To solve this problem,Brushtail can download the opac login page, strip the hidden field values and submit these values with the barcode and PIN.
+For example, if the opac login is http://opacaddress/opacloginpage.htm, then the config parameter would be:<br><br>
+
+$OTHERFIELDS["formurl"] = "http://opacaddress/opacloginpage.htm";
+
+<br><br>
+If the intranet server cannot connect to the web catalogue directly, requiring a web proxy, then the proxy IP address and port number will need to be set with the following parameters:
+
+<br><br>
+$PROXY_IP = "";<br>
+$PROXY_PORT = "";
+	
+</p>
+
+
+</p>
+
+<h3>LDAP authentication</h3>
+<p>This allows the bookings to be authenticated against a ldap (windows) server. PHP needs to have ldap support enabled. The includes/config.php needs to have the $LDAPHOST parameter set.
+If authenticating windows users, the ldap username would be loginname@domainname.
+For testing LDAP authentication try using the main/ldaptest.php utility.</p>
+
+<h3>EMAIL authentication</h3>
+<p>This allows the bookings to be authenticated against a imap/pop3 email server. PHP needs to have imap support enabled. The includes/config.php needs to have the $MAILSERVER parameter set 
+(see http://www.php.net/manual/en/function.imap-open for more information).<br>
+The email login name would be used for authentication.</p>
+<p></p>
+
+<h3>Registration</h3>
+<p>This allows patrons to sign up using an email address. Once they have signed up they can add/cancel bookings. They will also receive a email confirmation when they book.</p>
+<p></p>
+
+
+<h3>Soap</h3>
+<p>This requires a custom script to be named soap.php to be located in the includes folder. 
+This script is not included in the Brushtail distribution. It is custom script created for specific installations.
+The script must generate a result array like the following.<br>
+$result['auth'] = "no"; // or yes for successful authentication<br>
+$result['failure'] = "Invalid password"; </p>
+<p></p>
+
+
+
+<a href="admin_toc.htm">Table of contents</a>
+</body>
+</html>
