@@ -1789,6 +1789,23 @@ addEvent(window, 'load', _required);
 					</p>
 					
 						   </form>";
+						   
+						   /* start of Wyndham Edit 20140404 */
+
+echo "<form action=\"calendar.php\" method=\"get\"  style=\"width:200px;padding:1em;margin:1em auto;text-align:left;border:solid 1px grey\">
+      <p style=\"padding:0;margin:0\">
+						  <label style=\"width:200px;display:block\"><b>$phrase[132]</b></label> <input type=\"text\" name=\"telephone\" > 
+		
+			  			       <input type=\"hidden\" name=\"m\" value=\"$m\">
+						          <input type=\"hidden\" name=\"event\" value=\"lookup\">
+						  <input type=\"hidden\" name=\"type\" value=\"phone\">
+						    <input type=\"submit\" name=\"submit\" value=\"$phrase[282]\" >
+					
+					</p>
+					
+						   </form>";
+
+/* end of Wyndham Edit 20140404 */
 	
 	if ($EVENTAUTHENTICATION == "local"  || $EVENTAUTHENTICATION == "web"  || $EVENTAUTHENTICATION == "ldap" )
  {
@@ -1909,7 +1926,37 @@ if ($total > 0)
 			$sql = "SELECT firstname, lastname,event_name,status,eventno,time_booking, event_start,cat_cost,paid from cal_bookings, cal_events ,cal_cat  where cal_events.event_catid = cal_cat.cat_id and cal_events.event_id = cal_bookings.eventno  $insert order by bookingno limit 200";
 
 		}
+	
+	/* start of Wyndham edit 20140404 */
+
+		    elseif ($_REQUEST["type"] == "phone" && ($_REQUEST["telephone"] != "")) 
+{
+			
+			$firstname=  $DB->escape(trim($_REQUEST["firstname"]));
+			$lastname=  $DB->escape(trim($_REQUEST["lastname"]));
+                        $telephone=  $DB->escape(trim($_REQUEST["telephone"]));
+			echo "$firstname $lastname $telephone";
 		
+			$insert = "";
+			if ($DB->type == "mysql")
+			{
+				if ($firstname != "") {$insert .= " and firstname like '%$firstname%'"; }
+			if ($lastname != "") {$insert .= " and lastname like '%$lastname%'"; }	
+                        if ($telephone!= "") {$insert .= " and telephone like '%$telephone%'"; }	
+			}
+			else
+			{
+			
+			if ($firstname != "") {$insert .= " and lowercase(firstname) like '%$firstname%'"; }
+			if ($lastname != "") {$insert .= " and lowercase(lastname) like '%$lastname%'"; }
+                        if ($telephone!= "") {$insert .= " and lowercase(telephone) like '%$telephone%'"; }
+			}
+			$sql = "SELECT firstname, lastname,telephone, event_name,status,eventno,time_booking, event_start,cat_cost,paid from cal_bookings, cal_events ,cal_cat  where cal_events.event_catid = cal_cat.cat_id and cal_events.event_id = cal_bookings.eventno  $insert order by bookingno limit 200";
+
+		}
+
+/*end of Wyndham Edit 20140404 */
+
 		elseif ($_REQUEST["type"] == "email" && $_REQUEST["email"] != "") 
 		{
 			echo $_REQUEST["email"];
